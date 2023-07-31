@@ -3,12 +3,23 @@
   "displayName": "Lean Snippet",
   "description": "Generate useful snippets!🌈",
   "version": "0.0.1",
+  "icon": "assets/images/logo.png",
+  "publisher": "IceyWu",
   "engines": {
     "vscode": "^1.80.0"
   },
   "categories": [
     "Snippets"
   ],
+  "author": {
+    "email": "3128006406@qq.com",
+    "name": "IceyWu",
+    "url": "https://github.com/IceyWu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IceyWu/Lean-Snippet"
+  },
   "contributes": {
     "snippets": [
       {
