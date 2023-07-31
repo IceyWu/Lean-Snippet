@@ -1,0 +1,22 @@
+{
+  "🌈 Request Demo": {
+    "prefix": "lre",
+    "body": [
+      "// 🌈 数据请求",
+      "const getDataLoading = ref(false);",
+      "const getData = async () => {",
+      "if (getDataLoading.value) return;",
+      "getDataLoading.value = true;",
+      "const params = {};",
+      " const { code, msg, result = [] } = ({} = await findAllStudents(params));",
+      " if (code === 0 && result) {",
+      " console.log('---数据请求成功---', result);",
+      " } else {",
+      "   console.log('---数据请求失败---', msg);",
+      " }",
+      "     getDataLoading.value = false;",
+      " };"
+    ],
+    "description": "🌈api requset demo"
+  }
+}
