@@ -18,5 +18,14 @@
       " };"
     ],
     "description": "🌈api requset demo"
-  }
+  },
+  "🌈 console.log()": {
+    "prefix": "lcl",
+    "body": [
+      // "console.log('🌈-----${TM_CURRENT_LINE/...$//}----- ', ${TM_CURRENT_LINE/...$//});",
+      "console.log('🌈-----${TM_CURRENT_LINE/^...//}----- ', ${TM_CURRENT_LINE/^...//}); // ",
+    ],
+    "description": "🌈console.log('🌈-----val-----',val)"
+  },
+
 }

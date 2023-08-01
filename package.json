@@ -24,7 +24,11 @@
     "snippets": [
       {
         "language": "javascript",
-        "path": "./snippets/snippets.code-snippets"
+        "path": "./snippets/snippets-js.code-snippets"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/snippets-vue.code-snippets"
       }
     ]
   }
