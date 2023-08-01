@@ -1,4 +1,36 @@
 {
+  // vue页面模板
+  "🌈 vue base template": {
+    "prefix": "lvb",
+    "body": [
+      "<template>",
+      "  <div class=\"${TM_FILENAME_BASE}-box\">",
+      "    <div class=\"${TM_FILENAME_BASE}-content\">",
+      "      <div class=\"${TM_FILENAME_BASE}-content-title\">${TM_FILENAME_BASE}</div>",
+      "    </div>",
+      "  </div>",
+      "</template>",
+      "",
+      "<script setup>",
+      "onMounted(() => {});",
+      "// function",
+      "const func = () => {",
+      "console.log('🌈-----I am a function -----');",
+      "};",
+      "</script>",
+      "",
+      "<style lang=\"less\" scoped>",
+      ".${TM_FILENAME_BASE} {",
+      "  &-content {",
+      "    &-title {",
+      "      color: #000;",
+      "    }",
+      "  }",
+      "}",
+      "</style>"
+    ],
+    "description": "🌈vue3 page template"
+  },
   // vue组件模板
   "🌈 vue component template": {
     "prefix": "lvc",
@@ -33,7 +65,7 @@
       "});",
       "</script>",
       "",
-      "<style lang=\"scss\" scoped>",
+      "<style lang=\"less\" scoped>",
       ".${TM_FILENAME_BASE} {",
       "  &-content {",
       "    &-title {",
@@ -43,7 +75,7 @@
       "}",
       "</style>"
     ],
-    "description": "🌈vue component template"
+    "description": "🌈vue3 component template"
   },
 
 }

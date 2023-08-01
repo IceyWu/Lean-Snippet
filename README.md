@@ -12,18 +12,22 @@
 
 <br>
 
-## Usage
+## Usage🫧
 
-### js
-```javascript
-lcl xxx => console.log('🌈-----xxx-----',xxx) // xxx
-...
-```
-### vue
-```javascript
-lvc
-...
-```
+
+| Prefix | JavaScript Snippet Content                    |
+| ------ | --------------------------------------------- |
+| `lre`  | `🌈api requset demo`                          |
+| `lcl`  | `🌈console.log('🌈-----xxx-----',xxx) // xxx` |
+| `laf`  | `🌈const func = () => {} `                    |
+| `lif`  | `🌈if(){ ... } else{...}`                     |
+
+<br />
+
+| Prefix | Vue Snippet Content         |
+| ------ | --------------------------- |
+| `lvc`  | `🌈vue3 component template` |
+| `lvb`  | `🌈 vue base template`      |
 
 ## License
 
