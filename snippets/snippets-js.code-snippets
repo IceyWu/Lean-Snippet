@@ -22,7 +22,7 @@
   "🌈 console.log()": {
     "prefix": "lcl",
     "body": [
-      "console.log('🌈-----${TM_CURRENT_LINE/^....//}----- ', ${TM_CURRENT_LINE/^....//}); // ",
+      "console.log('🌈-----${TM_CURRENT_LINE/^(.*)lcl//}----- ', ${TM_CURRENT_LINE/^(.*)lcl//}); // "
     ],
     "description": "🌈console.log('🌈-----val-----',val)"
   },
@@ -49,7 +49,77 @@
     ],
     "description": "🌈if-else"
   },
-
-
-
+  // switch-case
+  "🌈 switch-case": {
+    "prefix": "lsw",
+    "body": [
+      "switch (${1:condition}) {",
+      "  case ${2:case} :",
+      "    ${3:console.log('🌈-----case part-----');}",
+      "    break;",
+      "  default:",
+      "    ${4:console.log('🌈-----default part-----');}",
+      "}"
+    ],
+    "description": "🌈switch-case"
+  },
+  // vue3 setup
+  // define ref
+  "🌈 define ref": {
+    "prefix": "lref",
+    "body": ["const ${1:refName} = ref(${2:val});"],
+    "description": "🌈define ref"
+  },
+  // define reactive
+  "🌈 define reactive": {
+    "prefix": "lrea",
+    "body": ["const ${1:reactiveName} = reactive(${2:val});"],
+    "description": "🌈define reactive"
+  },
+  // define computed
+  "🌈 define computed": {
+    "prefix": "lcom",
+    "body": [
+      "const ${1:computedName} = computed(() => {",
+      "  return ${2:val};",
+      "});"
+    ],
+    "description": "🌈define computed"
+  },
+  // define watch
+  "🌈 define watch": {
+    "prefix": "lwa",
+    "body": ["watch(${1:watchName}, (val) => {", "  ${2:val}", "});"],
+    "description": "🌈define watch"
+  },
+  // define watchEffect
+  "🌈 define watchEffect": {
+    "prefix": "lwe",
+    "body": ["watchEffect(() => {", "  ${1:val}", "});"],
+    "description": "🌈define watchEffect"
+  },
+  // define onMounted
+  "🌈 define onMounted": {
+    "prefix": "lmo",
+    "body": ["onMounted(() => {", "  ${1:val}", "});"],
+    "description": "🌈define onMounted"
+  },
+  // define onBeforeMount
+  "🌈 define onBeforeMount": {
+    "prefix": "lbm",
+    "body": ["onBeforeMount(() => {", "  ${1:val}", "});"],
+    "description": "🌈define onBeforeMount"
+  },
+  // define onBeforeUnmount
+  "🌈 define onBeforeUnmount": {
+    "prefix": "lbu",
+    "body": ["onBeforeUnmount(() => {", "  ${1:val}", "});"],
+    "description": "🌈define onBeforeUnmount"
+  },
+  // define onUnmounted
+  "🌈 define onUnmounted": {
+    "prefix": "lun",
+    "body": ["onUnmounted(() => {", "  ${1:val}", "});"],
+    "description": "🌈define onUnmounted"
+  }
 }

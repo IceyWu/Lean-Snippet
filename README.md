@@ -21,6 +21,7 @@
 | `lcl`  | `🌈console.log('🌈-----xxx-----',xxx) // xxx` |
 | `laf`  | `🌈const func = () => {} `                    |
 | `lif`  | `🌈if(){ ... } else{...}`                     |
+| `lsw`  | `🌈switch(){ case: break; default: break;}`   |
 
 <br />
 
@@ -28,6 +29,16 @@
 | ------ | --------------------------- |
 | `lvc`  | `🌈vue3 component template` |
 | `lvb`  | `🌈 vue base template`      |
+| `lref` | `🌈 const valName = ref(..) |
+| `lrea` | `🌈 const valName = reactive(..) |
+| `lcom` | `🌈 const valName = computed(..) |
+| `lwa`  | `🌈 watch(..) |
+| `lwe`  | `🌈 watchEffect(..) |
+| `lmo`  | `🌈 onMounted(..) |
+| `lbm`  | `🌈 onBeforeMount(..) |
+| `lbu`  | `🌈 onBeforeUnmount(..) |
+| `lun`  | `🌈 onUnmounted(..) |
+
 
 ## License
 
