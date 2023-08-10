@@ -78,6 +78,28 @@ function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
 
 function activate(context) {
   console.log("console-log-utils is now active");
+  //   彩蛋：增加log打印:thanks for using lean-snippet
+  const surprise = vscode.commands.registerCommand("extension.surprise", () => {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
+    const content = `// 🌈thanks for AnNan!! 🎇🎇🎇🎇🎇🎇`;
+    insertText(content);
+  });
+  context.subscriptions.push(surprise);
+  // 创建状态栏项
+  const statusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left
+  );
+  // 设置状态栏项的属性
+  statusBarItem.text = "🌈Lean Snippet";
+  statusBarItem.tooltip = "🌈 Generate useful snippets!";
+  statusBarItem.command = "extension.surprise"; // 替换为你的扩展命令
+  // 显示状态栏项
+  statusBarItem.show();
+  // 注册状态栏项，以便在插件卸载时清理资源
+  context.subscriptions.push(statusBarItem);
 
   const insertLogStatement = vscode.commands.registerCommand(
     "extension.insertLogStatement",
