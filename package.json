@@ -1,8 +1,8 @@
 {
   "name": "LeanSnippet",
   "displayName": "Lean Snippet",
-  "description": "Generate useful snippets!🌈",
-  "version": "0.0.4",
+  "description": "🌈 Generate useful snippets!",
+  "version": "0.0.6",
   "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
@@ -25,6 +25,10 @@
       {
         "language": "javascript",
         "path": "./snippets/snippets-js.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/snippets-ts.code-snippets"
       },
       {
         "language": "vue",
