@@ -22,23 +22,16 @@ const getRandomEmoji = () => {
   const emojis = [
     "🌈",
     "🦄",
-    "🐛",
+
     "🐳",
     "🐙",
     "🐬",
     "🐠",
     "🌵",
-    "🍄",
-    "🌯",
-    "🍺",
-    "🍻",
-    "🍩",
-    "🍦",
+    "🌳",
     "🍧",
-    "🍨",
+    "🎉",
     "🍪",
-    "🍫",
-    "🍬",
     "🍭",
   ];
   return emojis[Math.floor(Math.random() * emojis.length)];
@@ -117,7 +110,7 @@ function activate(context) {
         ? vscode.commands
             .executeCommand("editor.action.insertLineAfter")
             .then(() => {
-              const logToInsert = `console.log('${randomEmoji}-----${text}-----', ${text});  // text: ${text}`;
+              const logToInsert = `console.log('${randomEmoji}-----${text}-----', ${text});`;
               insertText(logToInsert);
             })
         : insertText("console.log();");

@@ -2,7 +2,7 @@
   "name": "LeanSnippet",
   "displayName": "Lean Snippet",
   "description": "🌈 Generate useful snippets!",
-  "version": "0.1.0",
+  "version": "0.10.1",
   "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
@@ -33,6 +33,10 @@
       {
         "language": "vue",
         "path": "./snippets/snippets-vue.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/snippets-html.code-snippets"
       }
     ],
     "commands": [
