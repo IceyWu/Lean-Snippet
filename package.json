@@ -2,7 +2,7 @@
   "name": "LeanSnippet",
   "displayName": "Lean Snippet",
   "description": "🌈 Generate useful snippets!",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
@@ -45,6 +45,10 @@
         "title": "Insert Log Statement"
       },
       {
+        "command": "extension.insertLogChoose",
+        "title": "Insert Choose Content"
+      },
+      {
         "command": "extension.deleteAllLogStatements",
         "title": "Delete all console.log statements"
       }
@@ -60,12 +64,19 @@
         "command": "extension.deleteAllLogStatements",
         "key": "shift+ctrl+d",
         "mac": "shift+cmd+d"
+      },
+      {
+        "command": "extension.insertLogChoose",
+        "key": "shift+ctrl+/",
+        "mac": "shift+cmd+/",
+        "when": "editorTextFocus"
       }
     ]
   },
   "activationEvents": [
     "onCommand:extension.insertLogStatement",
-    "onCommand:extension.deleteAllLogStatements"
+    "onCommand:extension.deleteAllLogStatements",
+    "onCommand:extension.insertLogChoose"
   ],
   "main": "./func/extension",
   "scripts": {

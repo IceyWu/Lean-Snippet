@@ -16,9 +16,21 @@
 
 ## KeyBoard Shortcuts 🌈
 
-#### Cmd+Shift+L
+#### Cmd+Shift+/
 
 console.log selected text
+
+```
+console.log('🌳result------------------------------>');
+```
+
+#### Cmd+Shift+L
+
+console.log selected text and val
+
+```
+console.log('🍧-----text-----', val);
+```
 
 #### Cmd+Shift+D
 
@@ -37,19 +49,22 @@ It will delete all console.log statements in the current document
 
 <br />
 
-| Prefix | Vue Snippet Content               |
-| ------ | --------------------------------- |
-| `lvc`  | `🌈vue3 component template`       |
-| `lvb`  | `🌈 vue base template`            |
-| `lref` | `🌈 const valName = ref(..)`      |
-| `lrea` | `🌈 const valName = reactive(..)` |
-| `lcom` | `🌈 const valName = computed(..)` |
-| `lwa`  | `🌈 watch(..)`                    |
-| `lwe`  | `🌈 watchEffect(..)`              |
-| `lmo`  | `🌈 onMounted(..)`                |
-| `lbm`  | `🌈 onBeforeMount(..)`            |
-| `lbu`  | `🌈 onBeforeUnmount(..)`          |
-| `lun`  | `🌈 onUnmounted(..)`              |
+| Prefix | Vue Snippet Content                 |
+| ------ | ----------------------------------- |
+| `lvc`  | `🌈vue3 component template`         |
+| `lvb`  | `🌈 vue base template`              |
+| `lref` | `🌈 const valName = ref(..)`        |
+| `lrea` | `🌈 const valName = reactive(..)`   |
+| `lcom` | `🌈 const valName = computed(..)`   |
+| `lwa`  | `🌈 watch(..)`                      |
+| `lwe`  | `🌈 watchEffect(..)`                |
+| `lmo`  | `🌈 onMounted(..)`                  |
+| `lbm`  | `🌈 onBeforeMount(..)`              |
+| `lbu`  | `🌈 onBeforeUnmount(..)`            |
+| `lun`  | `🌈 onUnmounted(..)`                |
+| `lvem` | `🌈 const emit = defineEmits([]);`  |
+| `lvpr` | `🌈 const props = defineProps({});` |
+| `lvde` | `🌈 defineExpose({});`              |
 
 <br />
 

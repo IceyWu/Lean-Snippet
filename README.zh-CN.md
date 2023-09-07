@@ -16,9 +16,21 @@
 
 ## 键盘快捷键 🌈
 
-#### Cmd+Shift+L
+#### Cmd+Shift+/
 
 console.log selected text
+
+```
+console.log('🌳result------------------------------>');
+```
+
+#### Cmd+Shift+L
+
+console.log selected text and val
+
+```
+console.log('🍧-----text-----', val);
+```
 
 #### Cmd+Shift+D
 
@@ -53,12 +65,11 @@ It will delete all console.log statements in the current document
 
 <br />
 
-| Prefix | Vue Snippet html                                      |
-| ------ | ----------------------------------------------------- |
-| `lrem`  | `🌈 生成英文乱数假文`                                 |
-| `lremc`  | `🌈 生成中文乱数假文`                                 |
-| `lremn`  | `🌈 生成数字乱数假文`                                 |
-
+| Prefix  | Vue Snippet html      |
+| ------- | --------------------- |
+| `lrem`  | `🌈 生成英文乱数假文` |
+| `lremc` | `🌈 生成中文乱数假文` |
+| `lremn` | `🌈 生成数字乱数假文` |
 
 # 适用于 VS Code 的快捷工具
 

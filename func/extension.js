@@ -22,9 +22,8 @@ const getRandomEmoji = () => {
   const emojis = [
     "🌈",
     "🦄",
-
     "🐳",
-    "🐙",
+    "🎁",
     "🐬",
     "🐠",
     "🌵",
@@ -59,13 +58,9 @@ function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
   });
 
   vscode.workspace.applyEdit(workspaceEdit).then(() => {
-    logs.length > 1
-      ? vscode.window.showInformationMessage(
-          `${logs.length} console.logs deleted`
-        )
-      : vscode.window.showInformationMessage(
-          `${logs.length} console.log deleted`
-        );
+    vscode.window.showInformationMessage(
+      ` Opps!🌈  There have ${logs.length} logs deleted`
+    );
   });
 }
 
@@ -137,6 +132,31 @@ function activate(context) {
     }
   );
   context.subscriptions.push(deleteAllLogStatements);
+
+  const insertLogChoose = vscode.commands.registerCommand(
+    "extension.insertLogChoose",
+    () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        return;
+      }
+
+      const selection = editor.selection;
+      const text = editor.document.getText(selection);
+      const randomEmoji = getRandomEmoji();
+      text
+        ? vscode.commands
+            .executeCommand("editor.action.insertLineAfter")
+            .then(() => {
+              const logToInsert = `console.log('${randomEmoji}${text}------------------------------>');`;
+              insertText(logToInsert);
+            })
+        : insertText(
+            `console.log('${randomEmoji}------------------------------>');`
+          );
+    }
+  );
+  context.subscriptions.push(insertLogChoose);
 }
 exports.activate = activate;
 

@@ -157,4 +157,35 @@
     ],
     "description": "🌈lorem of number"
   },
+   // vue emit
+   "🌈 vue emit": {
+    "prefix": "lvem",
+    "body": [
+      "const emit = defineEmits(['update:isShow', 'func']);"
+    ],
+    "description": "🌈vue3 emit"
+  },
+  // vue props
+  "🌈 vue props": {
+    "prefix": "lvpr",
+    "body": [
+      "const props = defineProps({",
+      "  isShow: {",
+      "    type: Boolean,",
+      "    default: false,",
+      "  },",
+      "});"
+    ],
+    "description": "🌈vue3 props"
+  },
+  // vue defineExpose
+  "🌈 vue defineExpose": {
+    "prefix": "lvde",
+    "body": [
+      "defineExpose({",
+      "  func,",
+      "});"
+    ],
+    "description": "🌈vue3 defineExpose"
+  },
 }
