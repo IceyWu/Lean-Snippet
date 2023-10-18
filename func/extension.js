@@ -54,12 +54,25 @@ function getAllLogStatements(document, documentText) {
 
 function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
   logs.forEach((log) => {
-    workspaceEdit.delete(docUri, log);
+    const lineNum = log.start.line;
+    // 获取所在行的内容
+    const lineContent =
+      vscode.window.activeTextEditor.document.lineAt(lineNum).text;
+    // 获取所在行的内容的长度
+    const lineContentLength = lineContent.length;
+    // 删除所在行的内容
+    workspaceEdit.delete(
+      docUri,
+      new vscode.Range(
+        new vscode.Position(lineNum, 0),
+        new vscode.Position(lineNum, lineContentLength)
+      )
+    );
   });
-
+  const randomEmoji = getRandomEmoji();
   vscode.workspace.applyEdit(workspaceEdit).then(() => {
     vscode.window.showInformationMessage(
-      ` Opps!🌈  There have ${logs.length} logs deleted`
+      ` Opps!${randomEmoji}  There have ${logs.length} logs deleted`
     );
   });
 }
