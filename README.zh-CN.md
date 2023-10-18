@@ -5,11 +5,13 @@
 </p>
 
 <h1 align="center">Lean Snippet</h1>
+<h3 align="center">Visual Studio Code 插件 </h3>
 
 <p align="center">
 <a href="https://marketplace.visualstudio.com/items?itemName=IceyWu.LeanSnippet" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/IceyWu.LeanSnippet.svg?color=eee&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
 </p>
 
+[下载 🚀](https://marketplace.visualstudio.com/items?itemName=IceyWu.LeanSnippet)
 <br>
 
 **中文** | [English](./README.md)
