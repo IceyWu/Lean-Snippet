@@ -17,6 +17,12 @@
 
 <br>
 
+## Using 🌈
+<p align="center">
+<img src="./assets/use.gif" style="width:100%;"  />
+</p>
+
+
 ## KeyBoard Shortcuts 🌈
 
 #### Cmd+Shift+/

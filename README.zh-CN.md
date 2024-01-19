@@ -16,6 +16,11 @@
 
 **中文** | [English](./README.md)
 
+## 使用 🌈
+<p align="center">
+<img src="./assets/use.gif" style="width:100%;"  />
+</p>
+
 ## 键盘快捷键 🌈
 
 #### Cmd+Shift+/
