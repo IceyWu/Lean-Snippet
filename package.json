@@ -2,7 +2,7 @@
   "name": "LeanSnippet",
   "displayName": "Lean Snippet",
   "description": "🌈 Generate useful snippets!",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
@@ -81,7 +81,10 @@
   "main": "./func/extension",
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test"
+    "test": "node ./node_modules/vscode/bin/test",
+    "prepublishOnly": "npm run build",
+    "release": "bumpp --commit --push --tag && vsce package && vsce publish",
+    "changelog": "conventional-changelog -p custom-config -i CHANGELOG.md -s -r 0  -n ./changelog-option.cjs"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.32",
