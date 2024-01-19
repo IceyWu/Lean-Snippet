@@ -188,4 +188,12 @@
     ],
     "description": "🌈vue3 defineExpose"
   },
+  // vue defineModel
+  "🌈 vue defineModel": {
+    "prefix": "lvdm",
+    "body": [
+      "const ${1:modelName} = defineModel(\"${2:modelName}\", { type: ${3:type}, default: ${4:default} });"
+    ],
+    "description": "🌈vue3 defineModel"
+  },
 }

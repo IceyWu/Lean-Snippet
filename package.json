@@ -28,7 +28,7 @@
       },
       {
         "language": "typescript",
-        "path": "./snippets/snippets-ts.code-snippets"
+        "path": "./snippets/snippets-js.code-snippets"
       },
       {
         "language": "vue",
