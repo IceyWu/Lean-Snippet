@@ -170,6 +170,28 @@ function activate(context) {
     }
   );
   context.subscriptions.push(insertLogChoose);
+  // consolePlus
+  const insertConsolePlus = vscode.commands.registerCommand(
+    "extension.insertConsolePlus",
+    () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        return;
+      }
+
+      const selection = editor.selection;
+      const text = editor.document.getText(selection);
+      text
+        ? vscode.commands
+            .executeCommand("editor.action.insertLineAfter")
+            .then(() => {
+              const logToInsert = `consolePlus.log('${text}', ${text});`;
+              insertText(logToInsert);
+            })
+        : insertText("consolePlus.log();");
+    }
+  );
+  context.subscriptions.push(insertConsolePlus);
 }
 exports.activate = activate;
 

@@ -217,5 +217,17 @@
       "const ${1:modelName} = defineModel(\"${2:modelName}\", { type: ${3:type}, default: ${4:default} });"
     ],
     "description": "🌈vue3 defineModel"
-  }
+  },
+  
+  "🌈 const tempList use @iceywu/utils": {
+    "prefix": "llist",
+    "body": [
+      "const ${1:tempList} = list(${2:0}, ${3:10}, (index) => {",
+      "  return {",
+      "    ${4:id}: index,",
+      "  };",
+      "});"
+    ],
+    "description": "🌈const tempList use @iceywu/utils"
+  },
 }

@@ -51,6 +51,10 @@
       {
         "command": "extension.deleteAllLogStatements",
         "title": "Delete all console.log statements"
+      },
+      {
+        "command": "extension.insertConsolePlus",
+        "title": "consolePlus"
       }
     ],
     "keybindings": [
@@ -70,13 +74,20 @@
         "key": "shift+ctrl+/",
         "mac": "shift+cmd+/",
         "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.insertConsolePlus",
+        "key": "shift+ctrl+j",
+        "mac": "shift+cmd+j",
+        "when": "editorTextFocus"
       }
     ]
   },
   "activationEvents": [
     "onCommand:extension.insertLogStatement",
     "onCommand:extension.deleteAllLogStatements",
-    "onCommand:extension.insertLogChoose"
+    "onCommand:extension.insertLogChoose",
+    "onCommand:extension.insertConsolePlus"
   ],
   "main": "./func/extension",
   "scripts": {
