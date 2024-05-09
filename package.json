@@ -2,7 +2,7 @@
   "name": "LeanSnippet",
   "displayName": "Lean Snippet",
   "description": "🌈 Generate useful snippets!",
-  "version": "0.10.5",
+  "version": "0.10.6",
   "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
