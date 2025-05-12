@@ -218,7 +218,7 @@
     ],
     "description": "🌈vue3 defineModel"
   },
-  
+
   "🌈 const tempList use @iceywu/utils": {
     "prefix": "llist",
     "body": [
@@ -230,4 +230,31 @@
     ],
     "description": "🌈const tempList use @iceywu/utils"
   },
+  "🌈 vue-hooks-pure request": {
+    "prefix": "lvhp",
+    "body": [
+      "const {",
+      "  search,",
+      "  onRefresh,",
+      "  onLoad,",
+      "  result,",
+      "} = useRequest(${1:requestApi}, {",
+      "  target: 'list',",
+      "  getVal: (res) => {",
+      "    return res",
+      "  },",
+      "  listOptions: {",
+      "    defaultPageKey: 'page',",
+      "    defaultSizeKey: 'size',",
+      "    defaultDataKey: 'list',",
+      "    defaultPage: -1,",
+      "    getTotal: (data) => {",
+      "      const total = getObjVal(data, 'data.totalElements', 0)",
+      "      return total",
+      "    },",
+      "  },",
+      "})"
+    ],
+    "description": "🌈 request by vue-hooks-pure"
+  }
 }
