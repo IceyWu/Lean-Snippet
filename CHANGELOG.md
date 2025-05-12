@@ -1,4 +1,22 @@
-## <small>0.10.3 (2024-1-19)</small>
+## <small>0.10.7 (2025-05-12)</small>
+
+* feat: add vue-hooks-pure request snippet to JS and TS code snippets ([9cdc89f](https://github.com/IceyWu/Lean-Snippet/commit/9cdc89f))
+
+
+
+## <small>0.10.6 (2024-05-09)</small>
+
+* feat: add 'list' and 'consolePlus' use @iceywu/utils ([025ae4d](https://github.com/IceyWu/Lean-Snippet/commit/025ae4d))
+
+
+
+## <small>0.10.5 (2024-02-01)</small>
+
+* fix: Refactor API request code ([a30d33b](https://github.com/IceyWu/Lean-Snippet/commit/a30d33b))
+
+
+
+## <small>0.10.4 (2024-01-19)</small>
 
 * feat: add func ([f2da74a](https://github.com/IceyWu/Lean-Snippet/commit/f2da74a))
 * feat: add js and vue snippets ([5f3adb7](https://github.com/IceyWu/Lean-Snippet/commit/5f3adb7))
