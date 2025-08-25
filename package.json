@@ -2,7 +2,7 @@
   "name": "LeanSnippet",
   "displayName": "Lean Snippet",
   "description": "🌈 Generate useful snippets!",
-  "version": "0.11.2",
+  "version": "1.0.0",
   "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
@@ -207,7 +207,7 @@
     "package": "vsce package",
     "publish": "vsce publish",
     "release": "pnpm run changelog && bumpp --commit --push --tag && pnpm run package && pnpm run publish",
-    "changelog": "changelogen --release"
+    "changelog": "changelogen --no-bump --no-commit --no-tag"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
