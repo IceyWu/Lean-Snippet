@@ -1,30 +1,18 @@
-## <small>0.10.7 (2025-05-12)</small>
 
-* feat: add vue-hooks-pure request snippet to JS and TS code snippets ([9cdc89f](https://github.com/IceyWu/Lean-Snippet/commit/9cdc89f))
+## v0.11.1
 
+[compare changes](https://github.com/IceyWu/Lean-Snippet/compare/v0.10.7...v0.11.1)
 
+### 🚀 Enhancements
 
-## <small>0.10.6 (2024-05-09)</small>
+- **snippets:** Update JavaScript, TypeScript, and Vue snippets for improved functionality and consistency ([9c8214c](https://github.com/IceyWu/Lean-Snippet/commit/9c8214c))
+- Enhance snippet management with new actions and UI improvements ([94c9c92](https://github.com/IceyWu/Lean-Snippet/commit/94c9c92))
 
-* feat: add 'list' and 'consolePlus' use @iceywu/utils ([025ae4d](https://github.com/IceyWu/Lean-Snippet/commit/025ae4d))
+### 🏡 Chore
 
+- Refactor code structure for improved readability and maintainability ([d3ccee4](https://github.com/IceyWu/Lean-Snippet/commit/d3ccee4))
 
+### ❤️ Contributors
 
-## <small>0.10.5 (2024-02-01)</small>
-
-* fix: Refactor API request code ([a30d33b](https://github.com/IceyWu/Lean-Snippet/commit/a30d33b))
-
-
-
-## <small>0.10.4 (2024-01-19)</small>
-
-* feat: add func ([f2da74a](https://github.com/IceyWu/Lean-Snippet/commit/f2da74a))
-* feat: add js and vue snippets ([5f3adb7](https://github.com/IceyWu/Lean-Snippet/commit/5f3adb7))
-* feat: add vue snippets ([b0c5c88](https://github.com/IceyWu/Lean-Snippet/commit/b0c5c88))
-* fix: 优化快捷删除遗漏注释log行 ([c26bbff](https://github.com/IceyWu/Lean-Snippet/commit/c26bbff))
-* fix: add emoji ([48716d7](https://github.com/IceyWu/Lean-Snippet/commit/48716d7))
-* fix: Update package.json and snippets ([0e3628d](https://github.com/IceyWu/Lean-Snippet/commit/0e3628d))
-* fix: Update Vue snippets and add new template for v-if ([43213a6](https://github.com/IceyWu/Lean-Snippet/commit/43213a6))
-
-
+- IceyWu ([@Life-Palette](https://github.com/Life-Palette))
 
