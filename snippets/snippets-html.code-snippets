@@ -1,5 +1,5 @@
 {
-  // lorem englsih
+
   "🌈 lorem desc": {
     "prefix": "lrem",
     "body": [
@@ -7,7 +7,7 @@
     ],
     "description": "🌈lorem of englsih"
   },
-  // lorem chinese
+
   "🌈 lorem desc chinese": {
     "prefix": "lremc",
     "body": [
@@ -15,7 +15,7 @@
     ],
     "description": "🌈lorem of chinese"
   },
-  // lorem number
+
   "🌈 lorem desc number": {
     "prefix": "lremn",
     "body": [
@@ -23,7 +23,7 @@
     ],
     "description": "🌈lorem of number"
   },
-  // vue for
+
   "🌈 vue for": {
     "prefix": "lvfor",
     "body": [
@@ -32,8 +32,8 @@
       "  </div>"
     ],
     "description": "🌈vue for"
-  }
-  // vue if template
+  },
+
   "🌈 vue if template": {
     "prefix": "lvtm",
     "body": [

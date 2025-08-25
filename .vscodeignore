@@ -1,4 +1,46 @@
+# VS Code configuration
 .vscode/**
 .vscode-test/**
+
+# Source code (only include compiled output)
+src/**
+**/*.ts
+**/tsconfig.json
+**/*.map
+
+# Development files
 .gitignore
+.yarnrc
 vsc-extension-quickstart.md
+**/.eslintrc.js
+eslint.config.js
+
+# Node.js
+node_modules/**
+pnpm-lock.yaml
+npm-debug.log*
+
+# Test files
+out/test/**
+test/**
+**/*.test.js
+**/*.test.ts
+
+# Build artifacts
+**/*.tsbuildinfo
+
+# Documentation (keep only essential)
+README.zh-CN.md
+TYPESCRIPT-UPGRADE.md
+FEATURES-TEST-GUIDE.md
+
+# Temporary files
+func/**
+*.vsix
+*.backup
+*.bak
+
+# Development tools
+fix-*.js
+test-*.ts
+test-*.js

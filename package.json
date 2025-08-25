@@ -2,11 +2,11 @@
   "name": "LeanSnippet",
   "displayName": "Lean Snippet",
   "description": "🌈 Generate useful snippets!",
-  "version": "0.10.7",
+  "version": "0.11.0",
   "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Snippets"
@@ -21,6 +21,25 @@
     "url": "https://github.com/IceyWu/Lean-Snippet"
   },
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "leanSnippetExplorer",
+          "title": "Lean Snippet",
+          "icon": "$(code)"
+        }
+      ]
+    },
+    "views": {
+      "leanSnippetExplorer": [
+        {
+          "id": "leanSnippetView",
+          "name": "Code Snippets",
+          "icon": "$(code)",
+          "when": "true"
+        }
+      ]
+    },
     "snippets": [
       {
         "language": "javascript",
@@ -28,7 +47,7 @@
       },
       {
         "language": "typescript",
-        "path": "./snippets/snippets-js.code-snippets"
+        "path": "./snippets/snippets-ts.code-snippets"
       },
       {
         "language": "vue",
@@ -55,6 +74,26 @@
       {
         "command": "extension.insertConsolePlus",
         "title": "consolePlus"
+      },
+      {
+        "command": "leanSnippet.refreshSnippets",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "leanSnippet.insertSnippet",
+        "title": "Insert Snippet",
+        "icon": "$(add)"
+      },
+      {
+        "command": "leanSnippet.openSnippetFile",
+        "title": "Open Snippet File",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "leanSnippet.previewSnippet",
+        "title": "Preview Snippet",
+        "icon": "$(eye)"
       }
     ],
     "keybindings": [
@@ -81,32 +120,61 @@
         "mac": "shift+cmd+j",
         "when": "editorTextFocus"
       }
-    ]
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "leanSnippet.refreshSnippets",
+          "when": "view == leanSnippetView",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "leanSnippet.insertSnippet",
+          "when": "view == leanSnippetView && viewItem == snippet",
+          "group": "inline"
+        },
+        {
+          "command": "leanSnippet.previewSnippet",
+          "when": "view == leanSnippetView && viewItem == snippet",
+          "group": "inline"
+        },
+        {
+          "command": "leanSnippet.openSnippetFile",
+          "when": "view == leanSnippetView && viewItem == snippetFile",
+          "group": "inline"
+        }
+      ]
+    }
   },
-  "activationEvents": [
-    "onCommand:extension.insertLogStatement",
-    "onCommand:extension.deleteAllLogStatements",
-    "onCommand:extension.insertLogChoose",
-    "onCommand:extension.insertConsolePlus"
-  ],
-  "main": "./func/extension",
+  "activationEvents": [],
+  "main": "./out/extension.js",
   "scripts": {
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test",
-    "prepublishOnly": "npm run build",
-    "release": "bumpp --commit --push --tag && npx vsce package && npx vsce publish",
-    "changelog": "conventional-changelog -p custom-config -i CHANGELOG.md -s -r 0  -n ./changelog-option.cjs"
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test",
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "release": "bumpp --commit --push --tag && npm run package && npm run publish",
+    "changelog": "conventional-changelog -p custom-config -i CHANGELOG.md -s -r 0 -n ./changelog-option.cjs"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^22.15.17",
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.16.1",
+    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/parser": "^8.2.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.0.0",
     "bumpp": "^10.1.0",
-    "conventional-changelog": "^5.1.0",
-    "conventional-changelog-cli": "^4.1.0",
+    "conventional-changelog": "^6.0.0",
+    "conventional-changelog-cli": "^5.0.0",
     "conventional-changelog-custom-config": "^0.3.1",
     "eslint": "^9.26.0",
-    "mocha": "^11.2.2",
-    "typescript": "^5.8.3",
-    "vscode": "^1.0.0"
+    "typescript": "^5.5.4"
   }
 }

@@ -60,17 +60,16 @@
     "description": "🌈console.log('🌈-----val-----',val)"
   },
 
-  // 箭头函数
   "🌈 arrow function": {
     "prefix": "laf",
     "body": [
       "const ${1:fnName} = (${2}) => {",
-      "  ${3:console.log('💗${1:fnName}---------->'${2});}",
+      "  ${3:console.log('💗${1:fnName}---------->', ${2});}",
       "};"
     ],
     "description": "🌈arrow function"
   },
-  // if-else
+
   "🌈 if-else": {
     "prefix": "lif",
     "body": [
@@ -82,7 +81,7 @@
     ],
     "description": "🌈if-else"
   },
-  // switch-case
+
   "🌈 switch-case": {
     "prefix": "lsw",
     "body": [
@@ -96,20 +95,20 @@
     ],
     "description": "🌈switch-case"
   },
-  // vue3 setup
-  // define ref
+
+
   "🌈 define ref": {
     "prefix": "lref",
     "body": ["const ${1:refName} = ref(${2:val});"],
     "description": "🌈define ref"
   },
-  // define reactive
+
   "🌈 define reactive": {
     "prefix": "lrea",
     "body": ["const ${1:reactiveName} = reactive(${2:val});"],
     "description": "🌈define reactive"
   },
-  // define computed
+
   "🌈 define computed": {
     "prefix": "lcom",
     "body": [
@@ -119,49 +118,49 @@
     ],
     "description": "🌈define computed"
   },
-  // define watch
+
   "🌈 define watch": {
     "prefix": "lwa",
     "body": ["watch(${1:watchName}, (val) => {", "  ${2:val}", "});"],
     "description": "🌈define watch"
   },
-  // define watchEffect
+
   "🌈 define watchEffect": {
     "prefix": "lwe",
     "body": ["watchEffect(() => {", "  ${1:val}", "});"],
     "description": "🌈define watchEffect"
   },
-  // define onMounted
+
   "🌈 define onMounted": {
     "prefix": "lmo",
     "body": ["onMounted(() => {", "  ${1:val}", "});"],
     "description": "🌈define onMounted"
   },
-  // define onBeforeMount
+
   "🌈 define onBeforeMount": {
     "prefix": "lbm",
     "body": ["onBeforeMount(() => {", "  ${1:val}", "});"],
     "description": "🌈define onBeforeMount"
   },
-  // define onBeforeUnmount
+
   "🌈 define onBeforeUnmount": {
     "prefix": "lbu",
     "body": ["onBeforeUnmount(() => {", "  ${1:val}", "});"],
     "description": "🌈define onBeforeUnmount"
   },
-  // define onUnmounted
+
   "🌈 define onUnmounted": {
     "prefix": "lun",
     "body": ["onUnmounted(() => {", "  ${1:val}", "});"],
     "description": "🌈define onUnmounted"
   },
-  // 代码注释块
+
   "🌈 code comment": {
     "prefix": "lcc",
     "body": ["/**", " * @func ${1:fnName}", " * @param ${2:arg}", " */"],
     "description": "🌈code comment"
   },
-  // lorem englsih
+
   "🌈 lorem desc": {
     "prefix": "lrem",
     "body": [
@@ -169,7 +168,7 @@
     ],
     "description": "🌈lorem of englsih"
   },
-  // lorem chinese
+
   "🌈 lorem desc chinese": {
     "prefix": "lremc",
     "body": [
@@ -177,7 +176,7 @@
     ],
     "description": "🌈lorem of chinese"
   },
-  // lorem number
+
   "🌈 lorem desc number": {
     "prefix": "lremn",
     "body": [
@@ -185,13 +184,13 @@
     ],
     "description": "🌈lorem of number"
   },
-  // vue emit
+
   "🌈 vue emit": {
     "prefix": "lvem",
     "body": ["const emit = defineEmits(['update:isShow', 'func']);"],
     "description": "🌈vue3 emit"
   },
-  // vue props
+
   "🌈 vue props": {
     "prefix": "lvpr",
     "body": [
@@ -204,13 +203,13 @@
     ],
     "description": "🌈vue3 props"
   },
-  // vue defineExpose
+
   "🌈 vue defineExpose": {
     "prefix": "lvde",
     "body": ["defineExpose({", "  func,", "});"],
     "description": "🌈vue3 defineExpose"
   },
-  // vue defineModel
+
   "🌈 vue defineModel": {
     "prefix": "lvdm",
     "body": [

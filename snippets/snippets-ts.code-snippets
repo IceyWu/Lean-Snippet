@@ -4,20 +4,20 @@
     "body": [
       "// 🌈 数据请求",
       "const getDataLoading = ref(false);",
-      "const getData = async () => {",
-      "if (getDataLoading.value) return;",
-      "getDataLoading.value = true;",
-      "const params = {};",
-      " const { code, msg, result = [] } = ({} = await findAllStudents(params));",
-      " if (code === 0 && result) {",
-      " console.log('---数据请求成功---', result);",
-      " } else {",
-      "   console.log('---数据请求失败---', msg);",
-      " }",
-      "     getDataLoading.value = false;",
-      " };"
+      "const getData = async (): Promise<void> => {",
+      "  if (getDataLoading.value) return;",
+      "  getDataLoading.value = true;",
+      "  const params = {};",
+      "  const { code, msg, result = [] } = await findAllStudents(params);",
+      "  if (code === 0 && result) {",
+      "    console.log('---数据请求成功---', result);",
+      "  } else {",
+      "    console.log('---数据请求失败---', msg);",
+      "  }",
+      "  getDataLoading.value = false;",
+      "};"
     ],
-    "description": "🌈api requset demo"
+    "description": "🌈api request demo with TypeScript"
   },
   "🌈 console.log()": {
     "prefix": "lcl",
@@ -25,9 +25,7 @@
       "console.log('🌈-----${TM_CURRENT_LINE/^(.*)lcl//}----- ', ${TM_CURRENT_LINE/^(.*)lcl//}); // "
     ],
     "description": "🌈console.log('🌈-----val-----',val)"
-  },
-
-  // 箭头函数
+  },
   "🌈 arrow function": {
     "prefix": "laf",
     "body": [
@@ -36,8 +34,7 @@
       "};"
     ],
     "description": "🌈arrow function"
-  },
-  // if-else
+  },
   "🌈 if-else": {
     "prefix": "lif",
     "body": [
@@ -48,8 +45,7 @@
       "}"
     ],
     "description": "🌈if-else"
-  },
-  // switch-case
+  },
   "🌈 switch-case": {
     "prefix": "lsw",
     "body": [
@@ -62,21 +58,17 @@
       "}"
     ],
     "description": "🌈switch-case"
-  },
-  // vue3 setup
-  // define ref
+  },
   "🌈 define ref": {
     "prefix": "lref",
     "body": ["const ${1:refName} = ref(${2:val});"],
     "description": "🌈define ref"
-  },
-  // define reactive
+  },
   "🌈 define reactive": {
     "prefix": "lrea",
     "body": ["const ${1:reactiveName} = reactive(${2:val});"],
     "description": "🌈define reactive"
-  },
-  // define computed
+  },
   "🌈 define computed": {
     "prefix": "lcom",
     "body": [
@@ -85,44 +77,37 @@
       "});"
     ],
     "description": "🌈define computed"
-  },
-  // define watch
+  },
   "🌈 define watch": {
     "prefix": "lwa",
     "body": ["watch(${1:watchName}, (val) => {", "  ${2:val}", "});"],
     "description": "🌈define watch"
-  },
-  // define watchEffect
+  },
   "🌈 define watchEffect": {
     "prefix": "lwe",
     "body": ["watchEffect(() => {", "  ${1:val}", "});"],
     "description": "🌈define watchEffect"
-  },
-  // define onMounted
+  },
   "🌈 define onMounted": {
     "prefix": "lmo",
     "body": ["onMounted(() => {", "  ${1:val}", "});"],
     "description": "🌈define onMounted"
-  },
-  // define onBeforeMount
+  },
   "🌈 define onBeforeMount": {
     "prefix": "lbm",
     "body": ["onBeforeMount(() => {", "  ${1:val}", "});"],
     "description": "🌈define onBeforeMount"
-  },
-  // define onBeforeUnmount
+  },
   "🌈 define onBeforeUnmount": {
     "prefix": "lbu",
     "body": ["onBeforeUnmount(() => {", "  ${1:val}", "});"],
     "description": "🌈define onBeforeUnmount"
-  },
-  // define onUnmounted
+  },
   "🌈 define onUnmounted": {
     "prefix": "lun",
     "body": ["onUnmounted(() => {", "  ${1:val}", "});"],
     "description": "🌈define onUnmounted"
-  },
-  // 代码注释块
+  },
   "🌈 code comment": {
     "prefix": "lcc",
     "body": [
@@ -151,13 +136,113 @@
       "    defaultSizeKey: 'size',",
       "    defaultDataKey: 'list',",
       "    defaultPage: -1,",
-      "    getTotal: (data) => {",
-      "      const total = getObjVal(data, 'data.totalElements', 0)",
-      "      return total",
+      "    getTotal: (data: any): number => {",
+      "      const total = getObjVal(data, 'data.totalElements', 0);",
+      "      return total;",
       "    },",
       "  },",
       "})"
     ],
-    "description": "🌈 request by vue-hooks-pure"
+    "description": "🌈 request by vue-hooks-pure with TypeScript"
+  },
+  "TypeScript Interface": {
+    "prefix": "linterface",
+    "body": [
+      "interface ${1:InterfaceName} {",
+      "  ${2:property}: ${3:type};",
+      "}"
+    ],
+    "description": "🌈 Create a TypeScript interface"
+  },
+  "TypeScript Type": {
+    "prefix": "ltype",
+    "body": [
+      "type ${1:TypeName} = ${2:type};"
+    ],
+    "description": "🌈 Create a TypeScript type alias"
+  },
+  "TypeScript Function": {
+    "prefix": "ltsfunc",
+    "body": [
+      "function ${1:functionName}(${2:param}: ${3:type}): ${4:returnType} {",
+      "  ${5:// implementation}",
+      "  return ${6:value};",
+      "}"
+    ],
+    "description": "🌈 Create a TypeScript function"
+  },
+  "TypeScript Arrow Function": {
+    "prefix": "ltsarrow",
+    "body": [
+      "const ${1:functionName} = (${2:param}: ${3:type}): ${4:returnType} => {",
+      "  ${5:// implementation}",
+      "  return ${6:value};",
+      "};"
+    ],
+    "description": "🌈 Create a TypeScript arrow function"
+  },
+  "TypeScript Class": {
+    "prefix": "lclass",
+    "body": [
+      "class ${1:ClassName} {",
+      "  private ${2:property}: ${3:type};",
+      "",
+      "  constructor(${4:param}: ${5:type}) {",
+      "    this.${2:property} = ${4:param};",
+      "  }",
+      "",
+      "  public ${6:methodName}(): ${7:returnType} {",
+      "    ${8:// implementation}",
+      "    return ${9:value};",
+      "  }",
+      "}"
+    ],
+    "description": "🌈 Create a TypeScript class"
+  },
+  "TypeScript Enum": {
+    "prefix": "lenum",
+    "body": [
+      "enum ${1:EnumName} {",
+      "  ${2:VALUE1} = '${3:value1}',",
+      "  ${4:VALUE2} = '${5:value2}',",
+      "}"
+    ],
+    "description": "🌈 Create a TypeScript enum"
+  },
+  "TypeScript Generic": {
+    "prefix": "lgeneric",
+    "body": [
+      "function ${1:functionName}<${2:T}>(${3:param}: ${2:T}): ${2:T} {",
+      "  ${4:// implementation}",
+      "  return ${3:param};",
+      "}"
+    ],
+    "description": "🌈 Create a TypeScript generic function"
+  },
+  "TypeScript Import": {
+    "prefix": "limport",
+    "body": [
+      "import { ${1:export} } from '${2:module}';"
+    ],
+    "description": "🌈 TypeScript import statement"
+  },
+  "TypeScript Export": {
+    "prefix": "lexport",
+    "body": [
+      "export { ${1:export} } from '${2:module}';"
+    ],
+    "description": "🌈 TypeScript export statement"
+  },
+  "Try Catch Block": {
+    "prefix": "ltrycatch",
+    "body": [
+      "try {",
+      "  ${1:// code that may throw}",
+      "} catch (error: unknown) {",
+      "  console.error('🚨 Error:', error);",
+      "  ${2:// error handling}",
+      "}"
+    ],
+    "description": "🌈 Try-catch block with proper TypeScript error handling"
   }
 }
