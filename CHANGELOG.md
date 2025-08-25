@@ -1,4 +1,8 @@
 
+## v0.11.2
+
+[compare changes](https://github.com/IceyWu/Lean-Snippet/compare/v0.11.1...v0.11.2)
+
 ## v0.11.1
 
 [compare changes](https://github.com/IceyWu/Lean-Snippet/compare/v0.10.7...v0.11.1)
