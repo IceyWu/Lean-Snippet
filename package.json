@@ -26,7 +26,7 @@
         {
           "id": "leanSnippetExplorer",
           "title": "Lean Snippet",
-          "icon": "$(code)"
+          "icon": "./assets/icons/lean-snippet-simple.svg"
         }
       ]
     },
@@ -36,6 +36,13 @@
           "id": "leanSnippetView",
           "name": "Code Snippets",
           "icon": "$(code)",
+          "when": "true"
+        },
+        {
+          "id": "leanSnippetActions",
+          "name": "Snippet Actions",
+          "type": "webview",
+          "icon": "$(tools)",
           "when": "true"
         }
       ]
@@ -78,12 +85,12 @@
       {
         "command": "leanSnippet.refreshSnippets",
         "title": "Refresh",
-        "icon": "$(refresh)"
+        "icon": "$(sync)"
       },
       {
         "command": "leanSnippet.insertSnippet",
         "title": "Insert Snippet",
-        "icon": "$(add)"
+        "icon": "$(play)"
       },
       {
         "command": "leanSnippet.openSnippetFile",
@@ -94,6 +101,26 @@
         "command": "leanSnippet.previewSnippet",
         "title": "Preview Snippet",
         "icon": "$(eye)"
+      },
+      {
+        "command": "leanSnippet.addSnippet",
+        "title": "Add New Snippet",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "leanSnippet.importSnippets",
+        "title": "Import Snippets",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "leanSnippet.exportSnippets",
+        "title": "Export Snippets",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "leanSnippet.deleteSnippet",
+        "title": "Delete Snippet",
+        "icon": "$(trash)"
       }
     ],
     "keybindings": [
@@ -127,6 +154,21 @@
           "command": "leanSnippet.refreshSnippets",
           "when": "view == leanSnippetView",
           "group": "navigation"
+        },
+        {
+          "command": "leanSnippet.addSnippet",
+          "when": "view == leanSnippetView",
+          "group": "navigation"
+        },
+        {
+          "command": "leanSnippet.importSnippets",
+          "when": "view == leanSnippetView",
+          "group": "navigation"
+        },
+        {
+          "command": "leanSnippet.exportSnippets",
+          "when": "view == leanSnippetView",
+          "group": "navigation"
         }
       ],
       "view/item/context": [
@@ -139,6 +181,11 @@
           "command": "leanSnippet.previewSnippet",
           "when": "view == leanSnippetView && viewItem == snippet",
           "group": "inline"
+        },
+        {
+          "command": "leanSnippet.deleteSnippet",
+          "when": "view == leanSnippetView && viewItem == snippet",
+          "group": "snippet@1"
         },
         {
           "command": "leanSnippet.openSnippetFile",

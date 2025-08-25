@@ -59,7 +59,6 @@
     ],
     "description": "🌈console.log('🌈-----val-----',val)"
   },
-
   "🌈 arrow function": {
     "prefix": "laf",
     "body": [
@@ -69,7 +68,6 @@
     ],
     "description": "🌈arrow function"
   },
-
   "🌈 if-else": {
     "prefix": "lif",
     "body": [
@@ -81,7 +79,6 @@
     ],
     "description": "🌈if-else"
   },
-
   "🌈 switch-case": {
     "prefix": "lsw",
     "body": [
@@ -95,20 +92,20 @@
     ],
     "description": "🌈switch-case"
   },
-
-
   "🌈 define ref": {
     "prefix": "lref",
-    "body": ["const ${1:refName} = ref(${2:val});"],
+    "body": [
+      "const ${1:refName} = ref(${2:val});"
+    ],
     "description": "🌈define ref"
   },
-
   "🌈 define reactive": {
     "prefix": "lrea",
-    "body": ["const ${1:reactiveName} = reactive(${2:val});"],
+    "body": [
+      "const ${1:reactiveName} = reactive(${2:val});"
+    ],
     "description": "🌈define reactive"
   },
-
   "🌈 define computed": {
     "prefix": "lcom",
     "body": [
@@ -118,49 +115,70 @@
     ],
     "description": "🌈define computed"
   },
-
   "🌈 define watch": {
     "prefix": "lwa",
-    "body": ["watch(${1:watchName}, (val) => {", "  ${2:val}", "});"],
+    "body": [
+      "watch(${1:watchName}, (val) => {",
+      "  ${2:val}",
+      "});"
+    ],
     "description": "🌈define watch"
   },
-
   "🌈 define watchEffect": {
     "prefix": "lwe",
-    "body": ["watchEffect(() => {", "  ${1:val}", "});"],
+    "body": [
+      "watchEffect(() => {",
+      "  ${1:val}",
+      "});"
+    ],
     "description": "🌈define watchEffect"
   },
-
   "🌈 define onMounted": {
     "prefix": "lmo",
-    "body": ["onMounted(() => {", "  ${1:val}", "});"],
+    "body": [
+      "onMounted(() => {",
+      "  ${1:val}",
+      "});"
+    ],
     "description": "🌈define onMounted"
   },
-
   "🌈 define onBeforeMount": {
     "prefix": "lbm",
-    "body": ["onBeforeMount(() => {", "  ${1:val}", "});"],
+    "body": [
+      "onBeforeMount(() => {",
+      "  ${1:val}",
+      "});"
+    ],
     "description": "🌈define onBeforeMount"
   },
-
   "🌈 define onBeforeUnmount": {
     "prefix": "lbu",
-    "body": ["onBeforeUnmount(() => {", "  ${1:val}", "});"],
+    "body": [
+      "onBeforeUnmount(() => {",
+      "  ${1:val}",
+      "});"
+    ],
     "description": "🌈define onBeforeUnmount"
   },
-
   "🌈 define onUnmounted": {
     "prefix": "lun",
-    "body": ["onUnmounted(() => {", "  ${1:val}", "});"],
+    "body": [
+      "onUnmounted(() => {",
+      "  ${1:val}",
+      "});"
+    ],
     "description": "🌈define onUnmounted"
   },
-
   "🌈 code comment": {
     "prefix": "lcc",
-    "body": ["/**", " * @func ${1:fnName}", " * @param ${2:arg}", " */"],
+    "body": [
+      "/**",
+      " * @func ${1:fnName}",
+      " * @param ${2:arg}",
+      " */"
+    ],
     "description": "🌈code comment"
   },
-
   "🌈 lorem desc": {
     "prefix": "lrem",
     "body": [
@@ -168,7 +186,6 @@
     ],
     "description": "🌈lorem of englsih"
   },
-
   "🌈 lorem desc chinese": {
     "prefix": "lremc",
     "body": [
@@ -176,7 +193,6 @@
     ],
     "description": "🌈lorem of chinese"
   },
-
   "🌈 lorem desc number": {
     "prefix": "lremn",
     "body": [
@@ -184,13 +200,13 @@
     ],
     "description": "🌈lorem of number"
   },
-
   "🌈 vue emit": {
     "prefix": "lvem",
-    "body": ["const emit = defineEmits(['update:isShow', 'func']);"],
+    "body": [
+      "const emit = defineEmits(['update:isShow', 'func']);"
+    ],
     "description": "🌈vue3 emit"
   },
-
   "🌈 vue props": {
     "prefix": "lvpr",
     "body": [
@@ -203,13 +219,15 @@
     ],
     "description": "🌈vue3 props"
   },
-
   "🌈 vue defineExpose": {
     "prefix": "lvde",
-    "body": ["defineExpose({", "  func,", "});"],
+    "body": [
+      "defineExpose({",
+      "  func,",
+      "});"
+    ],
     "description": "🌈vue3 defineExpose"
   },
-
   "🌈 vue defineModel": {
     "prefix": "lvdm",
     "body": [
@@ -217,7 +235,6 @@
     ],
     "description": "🌈vue3 defineModel"
   },
-
   "🌈 const tempList use @iceywu/utils": {
     "prefix": "llist",
     "body": [
