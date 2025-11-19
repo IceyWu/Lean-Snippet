@@ -15,6 +15,15 @@
 
 **中文** | [English](./README.md)
 
+## 📢 最新更新
+
+🎉 **v1.1.0** - 全新统一管理界面
+
+- 重构了用户界面，采用标签页设计替代折叠面板
+- 新增快捷键管理功能，支持在线编辑和重置
+- 美化的界面设计，更现代化的视觉效果
+- 中文界面，更友好的本地化体验
+
 ## ✨ 主要特性
 
 - 🎯 **智能侧边栏面板** - 可视化浏览和管理代码片段
@@ -42,72 +51,72 @@
 
 ## ⌨️ 键盘快捷键
 
-| 快捷键 | 描述 |
-|--------|------|
-| `Ctrl+Shift+L` / `Cmd+Shift+L` | 插入带变量的日志语句 |
-| `Ctrl+Shift+/` / `Cmd+Shift+/` | 为选中内容插入日志语句 |
+| 快捷键                         | 描述                      |
+| ------------------------------ | ------------------------- |
+| `Ctrl+Shift+L` / `Cmd+Shift+L` | 插入带变量的日志语句      |
+| `Ctrl+Shift+/` / `Cmd+Shift+/` | 为选中内容插入日志语句    |
 | `Ctrl+Shift+D` / `Cmd+Shift+D` | 删除所有 console.log 语句 |
-| `Ctrl+Shift+J` / `Cmd+Shift+J` | 插入 consolePlus 语句 |
+| `Ctrl+Shift+J` / `Cmd+Shift+J` | 插入 consolePlus 语句     |
 
 ### 示例
 
 **带变量的日志:**
 
 ```javascript
-console.log('🍧-----text-----', text);
+console.log("🍧-----text-----", text);
 ```
 
 **选中内容日志:**
 
 ```javascript
-console.log('🌳result------------------------------>');
+console.log("🌳result------------------------------>");
 ```
 
 ## 📝 代码片段
 
 ### JavaScript & TypeScript
 
-| 前缀 | 描述 | 内容 |
-|------|------|------|
-| `lre` | API 请求示例 | `async/await 请求模式` |
-| `lcl` | 带变量的控制台日志 | `console.log('🌈-----xxx-----', xxx)` |
-| `laf` | 箭头函数 | `const func = () => {}` |
-| `lif` | If-else 语句 | `if(){...} else{...}` |
-| `lsw` | Switch 语句 | `switch(){case: break; default: break;}` |
-| `lcc` | JSDoc 注释 | `/** * @func fnName */` |
-| `linterface` | TypeScript 接口 | `interface InterfaceName {}` |
-| `ltype` | TypeScript 类型别名 | `type TypeName = type` |
-| `ltsfunc` | TypeScript 函数 | `function name(): returnType {}` |
-| `lclass` | TypeScript 类 | `class ClassName {}` |
-| `lenum` | TypeScript 枚举 | `enum EnumName {}` |
-| `ltrycatch` | Try-catch 块 | `try{} catch(error: unknown){}` |
+| 前缀         | 描述                | 内容                                     |
+| ------------ | ------------------- | ---------------------------------------- |
+| `lre`        | API 请求示例        | `async/await 请求模式`                   |
+| `lcl`        | 带变量的控制台日志  | `console.log('🌈-----xxx-----', xxx)`    |
+| `laf`        | 箭头函数            | `const func = () => {}`                  |
+| `lif`        | If-else 语句        | `if(){...} else{...}`                    |
+| `lsw`        | Switch 语句         | `switch(){case: break; default: break;}` |
+| `lcc`        | JSDoc 注释          | `/** * @func fnName */`                  |
+| `linterface` | TypeScript 接口     | `interface InterfaceName {}`             |
+| `ltype`      | TypeScript 类型别名 | `type TypeName = type`                   |
+| `ltsfunc`    | TypeScript 函数     | `function name(): returnType {}`         |
+| `lclass`     | TypeScript 类       | `class ClassName {}`                     |
+| `lenum`      | TypeScript 枚举     | `enum EnumName {}`                       |
+| `ltrycatch`  | Try-catch 块        | `try{} catch(error: unknown){}`          |
 
 ### Vue 3 组合式 API
 
-| 前缀 | 描述 | 内容 |
-|------|------|------|
-| `lvc` | Vue 3 组件模板 | 完整组件结构 |
-| `lvb` | Vue 基础模板 | 基础 Vue 模板 |
-| `lref` | 响应式引用 | `const valName = ref(..)` |
-| `lrea` | 响应式对象 | `const valName = reactive(..)` |
-| `lcom` | 计算属性 | `const valName = computed(..)` |
-| `lwa` | 监听器 | `watch(..)` |
-| `lwe` | 监听器效果 | `watchEffect(..)` |
-| `lmo` | 挂载钩子 | `onMounted(..)` |
-| `lbm` | 挂载前钩子 | `onBeforeMount(..)` |
-| `lbu` | 卸载前钩子 | `onBeforeUnmount(..)` |
-| `lun` | 卸载钩子 | `onUnmounted(..)` |
-| `lvem` | 定义事件 | `const emit = defineEmits([])` |
-| `lvpr` | 定义属性 | `const props = defineProps({})` |
-| `lvde` | 定义暴露 | `defineExpose({})` |
+| 前缀   | 描述           | 内容                            |
+| ------ | -------------- | ------------------------------- |
+| `lvc`  | Vue 3 组件模板 | 完整组件结构                    |
+| `lvb`  | Vue 基础模板   | 基础 Vue 模板                   |
+| `lref` | 响应式引用     | `const valName = ref(..)`       |
+| `lrea` | 响应式对象     | `const valName = reactive(..)`  |
+| `lcom` | 计算属性       | `const valName = computed(..)`  |
+| `lwa`  | 监听器         | `watch(..)`                     |
+| `lwe`  | 监听器效果     | `watchEffect(..)`               |
+| `lmo`  | 挂载钩子       | `onMounted(..)`                 |
+| `lbm`  | 挂载前钩子     | `onBeforeMount(..)`             |
+| `lbu`  | 卸载前钩子     | `onBeforeUnmount(..)`           |
+| `lun`  | 卸载钩子       | `onUnmounted(..)`               |
+| `lvem` | 定义事件       | `const emit = defineEmits([])`  |
+| `lvpr` | 定义属性       | `const props = defineProps({})` |
+| `lvde` | 定义暴露       | `defineExpose({})`              |
 
 ### HTML 工具
 
-| 前缀 | 描述 | 内容 |
-|------|------|------|
-| `lrem` | 英文占位文本 | 英文 Lorem ipsum |
-| `lremc` | 中文占位文本 | 中文占位文本 |
-| `lremn` | 数字占位文本 | 数字占位文本 |
+| 前缀    | 描述         | 内容             |
+| ------- | ------------ | ---------------- |
+| `lrem`  | 英文占位文本 | 英文 Lorem ipsum |
+| `lremc` | 中文占位文本 | 中文占位文本     |
+| `lremn` | 数字占位文本 | 数字占位文本     |
 
 ## 🛠️ 开发技术
 

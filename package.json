@@ -33,16 +33,10 @@
     "views": {
       "leanSnippetExplorer": [
         {
-          "id": "leanSnippetView",
-          "name": "Code Snippets",
-          "icon": "$(code)",
-          "when": "true"
-        },
-        {
-          "id": "leanSnippetActions",
-          "name": "Snippet Actions",
+          "id": "leanSnippetMainView",
+          "name": "Lean Snippet",
           "type": "webview",
-          "icon": "$(tools)",
+          "icon": "$(dashboard)",
           "when": "true"
         }
       ]
@@ -148,6 +142,31 @@
         "when": "editorTextFocus"
       }
     ],
+    "configuration": {
+      "title": "Lean Snippet",
+      "properties": {
+        "leanSnippet.keybindings.extension.insertLogStatement": {
+          "type": "string",
+          "default": "",
+          "description": "插入日志语句的自定义快捷键"
+        },
+        "leanSnippet.keybindings.extension.deleteAllLogStatements": {
+          "type": "string",
+          "default": "",
+          "description": "删除所有日志的自定义快捷键"
+        },
+        "leanSnippet.keybindings.extension.insertLogChoose": {
+          "type": "string",
+          "default": "",
+          "description": "选择插入内容的自定义快捷键"
+        },
+        "leanSnippet.keybindings.extension.insertConsolePlus": {
+          "type": "string",
+          "default": "",
+          "description": "插入增强日志的自定义快捷键"
+        }
+      }
+    },
     "menus": {
       "view/title": [
         {
