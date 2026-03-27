@@ -1,11 +1,11 @@
-import * as vscode from 'vscode';
-import * as path from 'path';
+import * as path from "node:path";
+import * as vscode from "vscode";
 
 /**
  * 图标配置管理器
  */
 export class IconManager {
-  private extensionPath: string;
+  private readonly extensionPath: string;
 
   constructor(extensionPath: string) {
     this.extensionPath = extensionPath;
@@ -16,14 +16,16 @@ export class IconManager {
    */
   getLanguageIcon(language: string): vscode.Uri {
     const iconMap: { [key: string]: string } = {
-      'JavaScript': 'javascript.svg',
-      'TypeScript': 'typescript.svg',
-      'Vue': 'vue.svg',
-      'HTML': 'html.svg'
+      JavaScript: "javascript.svg",
+      TypeScript: "typescript.svg",
+      Vue: "vue.svg",
+      HTML: "html.svg",
     };
 
-    const iconFile = iconMap[language] || 'snippet.svg';
-    return vscode.Uri.file(path.join(this.extensionPath, 'assets', 'icons', iconFile));
+    const iconFile = iconMap[language] || "snippet.svg";
+    return vscode.Uri.file(
+      path.join(this.extensionPath, "assets", "icons", iconFile)
+    );
   }
 
   /**
@@ -31,8 +33,12 @@ export class IconManager {
    */
   getSnippetIcon(): { light: vscode.Uri; dark: vscode.Uri } {
     return {
-      light: vscode.Uri.file(path.join(this.extensionPath, 'assets', 'icons', 'snippet-light.svg')),
-      dark: vscode.Uri.file(path.join(this.extensionPath, 'assets', 'icons', 'snippet-dark.svg'))
+      light: vscode.Uri.file(
+        path.join(this.extensionPath, "assets", "icons", "snippet-light.svg")
+      ),
+      dark: vscode.Uri.file(
+        path.join(this.extensionPath, "assets", "icons", "snippet-dark.svg")
+      ),
     };
   }
 
@@ -41,14 +47,16 @@ export class IconManager {
    */
   getActionIcon(action: string): vscode.Uri {
     const iconMap: { [key: string]: string } = {
-      'add': 'add.svg',
-      'import': 'import.svg',
-      'export': 'export.svg',
-      'file': 'file.svg'
+      add: "add.svg",
+      import: "import.svg",
+      export: "export.svg",
+      file: "file.svg",
     };
 
-    const iconFile = iconMap[action] || 'snippet.svg';
-    return vscode.Uri.file(path.join(this.extensionPath, 'assets', 'icons', iconFile));
+    const iconFile = iconMap[action] || "snippet.svg";
+    return vscode.Uri.file(
+      path.join(this.extensionPath, "assets", "icons", iconFile)
+    );
   }
 
   /**

@@ -220,7 +220,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
+    "lint": "ultracite check src",
+    "lint:fix": "ultracite fix src",
     "test": "vscode-test",
     "vscode:prepublish": "npm run compile",
     "package": "vsce package",
@@ -229,16 +230,15 @@
     "changelog": "changelogen --no-bump --no-commit --no-tag"
   },
   "devDependencies": {
-    "@types/node": "^24.3.0",
-    "@types/vscode": "^1.85.0",
-    "@typescript-eslint/eslint-plugin": "^8.40.0",
-    "@typescript-eslint/parser": "^8.40.0",
-    "@vscode/test-cli": "^0.0.11",
+    "@biomejs/biome": "^2.4.9",
+    "@types/node": "^25.5.0",
+    "@types/vscode": "^1.110.0",
+    "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
-    "@vscode/vsce": "^3.6.0",
-    "bumpp": "^10.2.3",
+    "@vscode/vsce": "^3.7.1",
+    "bumpp": "^11.0.1",
     "changelogen": "^0.6.2",
-    "eslint": "^9.34.0",
-    "typescript": "^5.9.2"
+    "typescript": "^6.0.2",
+    "ultracite": "^7.3.2"
   }
 }

@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
 /**
  * 在编辑器中插入文本
@@ -29,7 +29,7 @@ export function insertText(text: string): void {
 export function getRandomEmoji(): string {
   const emojis = [
     "🌈",
-    "🦄", 
+    "🦄",
     "🐳",
     "🎁",
     "🐬",
@@ -58,9 +58,9 @@ export function getAllLogStatements(
 
   const logRegex =
     /console\.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\([^)]*\);?/g;
-  
-  let match: RegExpExecArray | null;
-  while ((match = logRegex.exec(documentText))) {
+
+  let match: RegExpExecArray | null = logRegex.exec(documentText);
+  while (match) {
     const matchRange = new vscode.Range(
       document.positionAt(match.index),
       document.positionAt(match.index + match[0].length)
@@ -68,8 +68,9 @@ export function getAllLogStatements(
     if (!matchRange.isEmpty) {
       logStatements.push(matchRange);
     }
+    match = logRegex.exec(documentText);
   }
-  
+
   return logStatements;
 }
 
@@ -87,8 +88,10 @@ export function deleteFoundLogStatements(
   logs.forEach((log) => {
     const lineNum = log.start.line;
     const editor = vscode.window.activeTextEditor;
-    if (!editor) return;
-    
+    if (!editor) {
+      return;
+    }
+
     // 获取所在行的内容
     const lineContent = editor.document.lineAt(lineNum).text;
     // 获取所在行的内容的长度
@@ -102,7 +105,7 @@ export function deleteFoundLogStatements(
       )
     );
   });
-  
+
   const randomEmoji = getRandomEmoji();
   vscode.workspace.applyEdit(workspaceEdit).then(() => {
     vscode.window.showInformationMessage(

@@ -1,14 +1,14 @@
 import * as vscode from "vscode";
+import { registerDeleteAllLogStatements } from "./commands/deleteCommands";
 import {
-  registerInsertLogStatement,
-  registerInsertLogChoose,
   registerInsertConsolePlus,
+  registerInsertLogChoose,
+  registerInsertLogStatement,
   registerSurpriseCommand,
 } from "./commands/logCommands";
-import { registerDeleteAllLogStatements } from "./commands/deleteCommands";
-import { createStatusBarItem } from "./utils/statusBar";
 import { MainViewProvider } from "./providers/mainViewProvider";
 import { Logger } from "./utils/logger";
+import { createStatusBarItem } from "./utils/statusBar";
 
 /**
  * 激活扩展

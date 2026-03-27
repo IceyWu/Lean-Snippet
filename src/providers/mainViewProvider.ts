@@ -1,13 +1,16 @@
+import * as fs from "node:fs";
+import * as path from "node:path";
 import * as vscode from "vscode";
-import * as fs from "fs";
-import * as path from "path";
 import { Logger } from "../utils/logger";
+
+const PROFILE_PATH_REGEX = /(.*[/\\]profiles[/\\][^/\\]+)[/\\]/;
+const GLOBAL_STORAGE_REGEX = /[/\\]globalStorage[/\\].*$/;
 
 interface Keybinding {
   command: string;
-  title: string;
   key: string;
   mac?: string;
+  title: string;
   when?: string; // 快捷键触发条件
 }
 
@@ -18,7 +21,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
   public static readonly viewType = "leanSnippetMainView";
 
   private _view?: vscode.WebviewView;
-  private keybindings: Map<string, Keybinding> = new Map();
+  private readonly keybindings: Map<string, Keybinding> = new Map();
 
   constructor(
     private readonly _extensionUri: vscode.Uri,
@@ -73,6 +76,8 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
             break;
           case "showWarning":
             vscode.window.showWarningMessage(message.data.message);
+            break;
+          default:
             break;
         }
       },
@@ -242,9 +247,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
     // 检查是否使用了profile
     if (globalStoragePath.includes("profiles")) {
       // 使用了profile，从globalStoragePath提取profile路径
-      const match = globalStoragePath.match(
-        /(.*[\/\\]profiles[\/\\][^\/\\]+)[\/\\]/
-      );
+      const match = globalStoragePath.match(PROFILE_PATH_REGEX);
       if (match) {
         keybindingsPath = path.join(match[1], "keybindings.json");
       } else {
@@ -252,10 +255,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
       }
     } else {
       // 没有使用profile，使用标准路径
-      const userPath = globalStoragePath.replace(
-        /[\/\\]globalStorage[\/\\].*$/,
-        ""
-      );
+      const userPath = globalStoragePath.replace(GLOBAL_STORAGE_REGEX, "");
       keybindingsPath = path.join(userPath, "keybindings.json");
     }
 
@@ -265,7 +265,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
   /**
    * 检查快捷键冲突
    */
-  private async checkKeybindingConflicts(keybinding: string) {
+  private checkKeybindingConflicts(keybinding: string) {
     const conflicts: any[] = [];
 
     try {
@@ -307,9 +307,8 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
       );
 
       // 检查快捷键冲突
-      const conflicts = await this.checkKeybindingConflicts(
-        formattedKeybinding
-      );
+      const conflicts =
+        await this.checkKeybindingConflicts(formattedKeybinding);
       if (conflicts.length > 0) {
         const conflictMsg = conflicts.map((c) => `  • ${c.command}`).join("\n");
         const result = await vscode.window.showWarningMessage(
@@ -350,7 +349,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
         Logger.info("keybindings.json 不存在，将创建新文件");
       }
 
-      Logger.debug(`当前配置数组内容:`, JSON.stringify(keybindings, null, 2));
+      Logger.debug("当前配置数组内容:", JSON.stringify(keybindings, null, 2));
 
       // 查找并更新或添加配置
       const existingIndex = keybindings.findIndex(
@@ -362,7 +361,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
       const keybindingInfo = this.keybindings.get(command);
       const newBinding: any = {
         key: formattedKeybinding,
-        command: command,
+        command,
       };
 
       // 如果有when条件，添加到配置中
@@ -374,26 +373,26 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
       if (existingIndex >= 0) {
         Logger.debug(`更新现有配置，索引: ${existingIndex}`);
         Logger.debug(
-          `原配置:`,
+          "原配置:",
           JSON.stringify(keybindings[existingIndex], null, 2)
         );
         keybindings[existingIndex] = newBinding;
         Logger.debug(
-          `新配置:`,
+          "新配置:",
           JSON.stringify(keybindings[existingIndex], null, 2)
         );
       } else {
-        Logger.debug(`添加新配置`);
+        Logger.debug("添加新配置");
         keybindings.push(newBinding);
         Logger.debug(`添加后数组长度: ${keybindings.length}`);
       }
 
-      Logger.debug(`更新后配置数组:`, JSON.stringify(keybindings, null, 2));
+      Logger.debug("更新后配置数组:", JSON.stringify(keybindings, null, 2));
 
       // 写回文件
       const newContent = JSON.stringify(keybindings, null, 2);
 
-      Logger.debug(`准备写入的配置:`, JSON.stringify(newBinding, null, 2));
+      Logger.debug("准备写入的配置:", JSON.stringify(newBinding, null, 2));
       Logger.debug(`总共 ${keybindings.length} 个快捷键配置`);
 
       // 确保目录存在
@@ -405,7 +404,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
         fs.mkdirSync(dir, { recursive: true });
       }
 
-      Logger.debug(`开始写入文件...`);
+      Logger.debug("开始写入文件...");
       fs.writeFileSync(keybindingsPath, newContent, "utf8");
       Logger.success(`成功写入keybindings.json: ${keybindingsPath}`);
 
@@ -420,7 +419,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
       );
       if (savedConfig) {
         Logger.success(
-          `✅ 验证成功！文件中找到配置:`,
+          "✅ 验证成功！文件中找到配置:",
           JSON.stringify(savedConfig, null, 2)
         );
       } else {
@@ -436,7 +435,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
         // 提供详细的说明
         const savedKeyInfo = savedConfig
           ? `\n\n已保存的配置：\n${JSON.stringify(savedConfig, null, 2)}`
-          : `\n\n⚠️ 警告：在文件中未找到该配置！`;
+          : "\n\n⚠️ 警告：在文件中未找到该配置！";
 
         vscode.window.showInformationMessage(
           `快捷键配置已写入！${savedKeyInfo}\n\n请检查打开的 keybindings.json 文件。`
@@ -447,7 +446,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
 
       // 如果自动更新失败，提供手动方式
       const result = await vscode.window.showWarningMessage(
-        `自动更新快捷键失败。是否手动配置？`,
+        "自动更新快捷键失败。是否手动配置？",
         "打开配置文件",
         "取消"
       );
@@ -463,7 +462,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
         if (keybindingInfo?.when) {
           configText += `, "when": "${keybindingInfo.when}"`;
         }
-        configText += ` }`;
+        configText += " }";
 
         await vscode.env.clipboard.writeText(configText);
 
@@ -511,7 +510,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
     }
   }
 
-  private async handleAddSnippet(data: any) {
+  private handleAddSnippet(data: any) {
     try {
       const { name, prefix, language, description, body } = data;
       Logger.info(`添加代码片段: ${name} (${language})`);
@@ -544,7 +543,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
 
       const bodyArray = body.split("\n");
       snippets[name] = {
-        prefix: prefix,
+        prefix,
         body: bodyArray,
         description: description || name,
       };
@@ -691,7 +690,7 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
 
       const saveUri = await vscode.window.showSaveDialog({
         defaultUri: vscode.Uri.file(
-          `lean-snippets-${language}-${new Date().getTime()}.json`
+          `lean-snippets-${language}-${Date.now()}.json`
         ),
         filters: {
           "JSON files": ["json"],

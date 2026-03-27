@@ -1,272 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lean Snippet</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
 
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        font-size: 13px;
-        color: var(--vscode-foreground);
-        background-color: var(--vscode-sideBar-background);
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, sans-serif;
+      font-size: 13px;
+      color: var(--vscode-foreground);
+      background-color: var(--vscode-sideBar-background);
+    }
 
-      /* 标签页导航 */
-      .tab-navigation {
-        display: flex;
-        background: var(--vscode-editorGroupHeader-tabsBackground);
-        border-bottom: 1px solid var(--vscode-editorGroupHeader-tabsBorder);
-        padding: 0 12px;
-        flex-shrink: 0;
-      }
+    /* 标签页导航 */
+    .tab-navigation {
+      display: flex;
+      flex-shrink: 0;
+      padding: 0 12px;
+      background: var(--vscode-editorGroupHeader-tabsBackground);
+      border-bottom: 1px solid var(--vscode-editorGroupHeader-tabsBorder);
+    }
 
-      .tab-item {
-        position: relative;
-        padding: 10px 16px;
-        cursor: pointer;
-        border: none;
-        background: none;
-        color: var(--vscode-tab-inactiveForeground);
-        font-size: 13px;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        border-bottom: 2px solid transparent;
-      }
+    .tab-item {
+      position: relative;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--vscode-tab-inactiveForeground);
+      cursor: pointer;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
 
-      .tab-item:hover {
-        color: var(--vscode-tab-activeForeground);
-      }
+    .tab-item:hover {
+      color: var(--vscode-tab-activeForeground);
+    }
 
-      .tab-item.active {
-        color: var(--vscode-tab-activeForeground);
-        border-bottom-color: var(--vscode-focusBorder);
-      }
+    .tab-item.active {
+      color: var(--vscode-tab-activeForeground);
+      border-bottom-color: var(--vscode-focusBorder);
+    }
 
-      /* 内容区域 */
-      .tab-content {
-        flex: 1;
-        overflow-y: auto;
-        padding: 20px;
-        display: none;
-      }
+    /* 内容区域 */
+    .tab-content {
+      display: none;
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
 
-      .tab-content.active {
-        display: block;
-      }
+    .tab-content.active {
+      display: block;
+    }
 
-      /* 卡片样式 */
-      .card {
-        background: var(--vscode-editor-background);
-        border: 1px solid var(--vscode-widget-border);
-        border-radius: 6px;
-        padding: 16px;
-        margin-bottom: 16px;
-      }
+    /* 卡片样式 */
+    .card {
+      padding: 16px;
+      margin-bottom: 16px;
+      background: var(--vscode-editor-background);
+      border: 1px solid var(--vscode-widget-border);
+      border-radius: 6px;
+    }
 
-      .card-title {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 12px;
-        color: var(--vscode-foreground);
-      }
+    .card-title {
+      margin-bottom: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--vscode-foreground);
+    }
 
-      /* 快捷操作按钮 */
+    /* 快捷操作按钮 */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .quick-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      font-size: 13px;
+      color: var(--vscode-button-foreground);
+      cursor: pointer;
+      background: var(--vscode-button-background);
+      border: none;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .quick-btn:hover {
+      background: var(--vscode-button-hoverBackground);
+    }
+
+    .quick-btn-icon {
+      font-size: 20px;
+    }
+
+    /* 表单样式 */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: var(--vscode-foreground);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--vscode-input-foreground);
+      background: var(--vscode-input-background);
+      border: 1px solid var(--vscode-input-border);
+      border-radius: 4px;
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      font-family: "Consolas", "Monaco", monospace;
+      resize: vertical;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--vscode-focusBorder);
+    }
+
+    .form-hint {
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--vscode-descriptionForeground);
+    }
+
+    /* 按钮样式 */
+    .btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      color: var(--vscode-button-foreground);
+      cursor: pointer;
+      background: var(--vscode-button-background);
+      border: none;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--vscode-button-hoverBackground);
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    /* 快捷键表格 */
+    .keybinding-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .keybinding-table th,
+    .keybinding-table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--vscode-widget-border);
+    }
+
+    .keybinding-table th {
+      font-weight: 600;
+      color: var(--vscode-foreground);
+      background: var(--vscode-editor-background);
+    }
+
+    .keybinding-table tr:hover {
+      background: var(--vscode-list-hoverBackground);
+    }
+
+    .keybinding-input {
+      width: 120px;
+      padding: 4px 8px;
+      font-size: 12px;
+      color: var(--vscode-input-foreground);
+      background: var(--vscode-input-background);
+      border: 1px solid var(--vscode-input-border);
+      border-radius: 3px;
+    }
+
+    .keybinding-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .keybinding-btn {
+      padding: 4px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      border: none;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+
+    .keybinding-save {
+      color: var(--vscode-button-foreground);
+      background: var(--vscode-button-background);
+    }
+
+    .keybinding-reset {
+      color: var(--vscode-textLink-foreground);
+      background: transparent;
+      border: 1px solid var(--vscode-textLink-foreground);
+    }
+
+    .keybinding-btn:hover {
+      opacity: 0.8;
+    }
+
+    /* 导入导出区域 */
+    .import-export-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 400px) {
       .quick-actions {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        grid-template-columns: 1fr;
       }
 
-      .quick-btn {
-        background: var(--vscode-button-background);
-        color: var(--vscode-button-foreground);
-        border: none;
-        padding: 12px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 13px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        transition: background 0.2s;
-        flex-direction: column;
-      }
-
-      .quick-btn:hover {
-        background: var(--vscode-button-hoverBackground);
-      }
-
-      .quick-btn-icon {
-        font-size: 20px;
-      }
-
-      /* 表单样式 */
-      .form-group {
-        margin-bottom: 16px;
-      }
-
-      .form-label {
-        display: block;
-        margin-bottom: 6px;
-        font-weight: 500;
-        color: var(--vscode-foreground);
-      }
-
-      .form-input,
-      .form-select,
-      .form-textarea {
-        width: 100%;
-        padding: 8px 12px;
-        border: 1px solid var(--vscode-input-border);
-        border-radius: 4px;
-        background: var(--vscode-input-background);
-        color: var(--vscode-input-foreground);
-        font-size: 13px;
-      }
-
-      .form-textarea {
-        min-height: 100px;
-        resize: vertical;
-        font-family: "Consolas", "Monaco", monospace;
-      }
-
-      .form-input:focus,
-      .form-select:focus,
-      .form-textarea:focus {
-        outline: none;
-        border-color: var(--vscode-focusBorder);
-      }
-
-      .form-hint {
-        font-size: 11px;
-        color: var(--vscode-descriptionForeground);
-        margin-top: 4px;
-      }
-
-      /* 按钮样式 */
-      .btn {
-        background: var(--vscode-button-background);
-        color: var(--vscode-button-foreground);
-        border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 13px;
-        transition: background 0.2s;
-      }
-
-      .btn:hover {
-        background: var(--vscode-button-hoverBackground);
-      }
-
-      .btn-block {
-        width: 100%;
-      }
-
-      /* 快捷键表格 */
-      .keybinding-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      .keybinding-table th,
-      .keybinding-table td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid var(--vscode-widget-border);
-      }
-
-      .keybinding-table th {
-        font-weight: 600;
-        color: var(--vscode-foreground);
-        background: var(--vscode-editor-background);
-      }
-
-      .keybinding-table tr:hover {
-        background: var(--vscode-list-hoverBackground);
-      }
-
-      .keybinding-input {
-        padding: 4px 8px;
-        border: 1px solid var(--vscode-input-border);
-        border-radius: 3px;
-        background: var(--vscode-input-background);
-        color: var(--vscode-input-foreground);
-        font-size: 12px;
-        width: 120px;
-      }
-
-      .keybinding-actions {
-        display: flex;
-        gap: 8px;
-      }
-
-      .keybinding-btn {
-        padding: 4px 10px;
-        font-size: 12px;
-        border-radius: 3px;
-        cursor: pointer;
-        border: none;
-        transition: all 0.2s;
-      }
-
-      .keybinding-save {
-        background: var(--vscode-button-background);
-        color: var(--vscode-button-foreground);
-      }
-
-      .keybinding-reset {
-        background: transparent;
-        color: var(--vscode-textLink-foreground);
-        border: 1px solid var(--vscode-textLink-foreground);
-      }
-
-      .keybinding-btn:hover {
-        opacity: 0.8;
-      }
-
-      /* 导入导出区域 */
       .import-export-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        grid-template-columns: 1fr;
       }
-
-      @media (max-width: 400px) {
-        .quick-actions {
-          grid-template-columns: 1fr;
-        }
-
-        .import-export-grid {
-          grid-template-columns: 1fr;
-        }
-      }
+    }
     </style>
   </head>
   <body>
     <!-- 标签页导航 -->
     <div class="tab-navigation">
-      <button class="tab-item active" data-tab="snippets">
+      <button type="button" class="tab-item active" data-tab="snippets">
         <span>代码片段</span>
       </button>
-      <button class="tab-item" data-tab="tools">
+      <button type="button" class="tab-item" data-tab="tools">
         <span>工具</span>
       </button>
-      <button class="tab-item" data-tab="keybindings">
+      <button type="button" class="tab-item" data-tab="keybindings">
         <span>快捷键</span>
       </button>
     </div>
@@ -282,7 +283,7 @@
             class="form-input"
             id="snippet-name"
             placeholder="例如：React 函数组件"
-          />
+          >
         </div>
         <div class="form-group">
           <label class="form-label">触发前缀</label>
@@ -291,7 +292,7 @@
             class="form-input"
             id="snippet-prefix"
             placeholder="例如：rfc"
-          />
+          >
         </div>
         <div class="form-group">
           <label class="form-label">语言</label>
@@ -309,7 +310,7 @@
             class="form-input"
             id="snippet-description"
             placeholder="简短描述"
-          />
+          >
         </div>
         <div class="form-group">
           <label class="form-label">代码内容</label>
@@ -321,7 +322,7 @@
           ></textarea>
           <div class="form-hint">提示：使用 $1, $2 等设置光标停留位置</div>
         </div>
-        <button class="btn btn-block" onclick="addSnippet()">
+        <button type="button" class="btn btn-block" onclick="addSnippet()">
           添加代码片段
         </button>
       </div>
@@ -330,7 +331,11 @@
         <h3 class="card-title">导入/导出</h3>
         <div class="import-export-grid">
           <div>
-            <button class="btn btn-block" onclick="importSnippets()">
+            <button
+              type="button"
+              class="btn btn-block"
+              onclick="importSnippets()"
+            >
               导入片段
             </button>
             <div class="form-hint" style="margin-top: 8px">
@@ -349,7 +354,11 @@
               <option value="vue">Vue</option>
               <option value="html">HTML</option>
             </select>
-            <button class="btn btn-block" onclick="exportSnippets()">
+            <button
+              type="button"
+              class="btn btn-block"
+              onclick="exportSnippets()"
+            >
               导出片段
             </button>
           </div>
@@ -362,19 +371,19 @@
       <div class="card">
         <h3 class="card-title">快速操作</h3>
         <div class="quick-actions">
-          <button class="quick-btn" onclick="insertLog()">
+          <button type="button" class="quick-btn" onclick="insertLog()">
             <span class="quick-btn-icon">📝</span>
             <span>插入日志</span>
           </button>
-          <button class="quick-btn" onclick="deleteAllLogs()">
+          <button type="button" class="quick-btn" onclick="deleteAllLogs()">
             <span class="quick-btn-icon">🗑️</span>
             <span>清理日志</span>
           </button>
-          <button class="quick-btn" onclick="insertChoose()">
+          <button type="button" class="quick-btn" onclick="insertChoose()">
             <span class="quick-btn-icon">➡️</span>
             <span>选择插入</span>
           </button>
-          <button class="quick-btn" onclick="insertConsolePlus()">
+          <button type="button" class="quick-btn" onclick="insertConsolePlus()">
             <span class="quick-btn-icon">⚡</span>
             <span>增强日志</span>
           </button>
@@ -410,9 +419,7 @@
               <th>操作</th>
             </tr>
           </thead>
-          <tbody id="keybindings-list">
-            <!-- 动态生成 -->
-          </tbody>
+          <tbody id="keybindings-list"><!-- 动态生成 --></tbody>
         </table>
       </div>
 
@@ -434,326 +441,329 @@
     </div>
 
     <script>
-      const vscode = acquireVsCodeApi();
+    "use strict";
+    /* global acquireVsCodeApi */
+    const vscode = acquireVsCodeApi();
 
-      // 标签切换
-      document.querySelectorAll(".tab-item").forEach((tab) => {
-        tab.addEventListener("click", () => {
-          document
-            .querySelectorAll(".tab-item")
-            .forEach((t) => t.classList.remove("active"));
-          document
-            .querySelectorAll(".tab-content")
-            .forEach((c) => c.classList.remove("active"));
-
-          tab.classList.add("active");
-          const tabId = tab.dataset.tab + "-tab";
-          document.getElementById(tabId).classList.add("active");
-
-          if (tab.dataset.tab === "keybindings") {
-            vscode.postMessage({ type: "getKeybindings" });
-          }
+    // 标签切换
+    document.querySelectorAll(".tab-item").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab-item").forEach((t) => {
+          t.classList.remove("active");
         });
-      });
-
-      // 快速操作函数
-      function insertLog() {
-        vscode.postMessage({
-          type: "quickInsert",
-          data: { command: "extension.insertLogStatement" },
-        });
-      }
-
-      function deleteAllLogs() {
-        vscode.postMessage({
-          type: "quickInsert",
-          data: { command: "extension.deleteAllLogStatements" },
-        });
-      }
-
-      function insertChoose() {
-        vscode.postMessage({
-          type: "quickInsert",
-          data: { command: "extension.insertLogChoose" },
-        });
-      }
-
-      function insertConsolePlus() {
-        vscode.postMessage({
-          type: "quickInsert",
-          data: { command: "extension.insertConsolePlus" },
-        });
-      }
-
-      // 代码片段操作
-      function addSnippet() {
-        const name = document.getElementById("snippet-name").value;
-        const prefix = document.getElementById("snippet-prefix").value;
-        const language = document.getElementById("snippet-language").value;
-        const description = document.getElementById(
-          "snippet-description"
-        ).value;
-        const body = document.getElementById("snippet-body").value;
-
-        if (!name || !prefix || !body) {
-          alert("请填写名称、前缀和代码内容");
-          return;
-        }
-
-        vscode.postMessage({
-          type: "addSnippet",
-          data: { name, prefix, language, description, body },
+        document.querySelectorAll(".tab-content").forEach((c) => {
+          c.classList.remove("active");
         });
 
-        document.getElementById("snippet-name").value = "";
-        document.getElementById("snippet-prefix").value = "";
-        document.getElementById("snippet-description").value = "";
-        document.getElementById("snippet-body").value = "";
-      }
+        tab.classList.add("active");
+        const tabId = `${tab.dataset.tab}-tab`;
+        document.getElementById(tabId).classList.add("active");
 
-      function importSnippets() {
-        vscode.postMessage({ type: "importSnippets" });
-      }
-
-      function exportSnippets() {
-        const language = document.getElementById("export-language").value;
-        vscode.postMessage({
-          type: "exportSnippets",
-          data: { language },
-        });
-      }
-
-      // 快捷键编辑
-      const editingKeybindings = new Map();
-
-      function startEditKeybinding(command) {
-        console.log("[Lean Snippet] 开始编辑快捷键:", command);
-        const row = document.querySelector(`[data-command="${command}"]`);
-        if (!row) {
-          console.error("[Lean Snippet] 找不到对应的行:", command);
-          return;
-        }
-        const keybindingCell = row.querySelector(".keybinding-display");
-        const currentKey = keybindingCell.textContent.trim();
-        console.log("[Lean Snippet] 当前快捷键:", currentKey);
-
-        // 清空单元格
-        keybindingCell.innerHTML = "";
-
-        // 使用DOM API创建输入框
-        const input = document.createElement("input");
-        input.type = "text";
-        input.className = "keybinding-input";
-        input.value = "";
-        input.placeholder = "请按下快捷键组合...";
-        input.setAttribute("data-command", command);
-        input.readOnly = true;
-
-        keybindingCell.appendChild(input);
-
-        // 延迟聚焦，确保输入框已经添加到DOM
-        setTimeout(() => {
-          input.focus();
-          console.log(
-            "[Lean Snippet] 输入框已创建并聚焦，当前值:",
-            input.value
-          );
-          console.log("[Lean Snippet] 请在输入框中按下新的快捷键组合！");
-        }, 10);
-
-        input.addEventListener("keydown", (e) => {
-          console.log(
-            "[Lean Snippet] 按键事件触发:",
-            e.key,
-            "Ctrl:",
-            e.ctrlKey,
-            "Shift:",
-            e.shiftKey
-          );
-          e.preventDefault();
-
-          const keys = [];
-          if (e.ctrlKey) keys.push("Ctrl");
-          if (e.shiftKey) keys.push("Shift");
-          if (e.altKey) keys.push("Alt");
-          if (e.metaKey) keys.push("Cmd");
-
-          let key = e.key;
-          if (key === " ") {
-            key = "Space";
-          } else if (
-            key === "Control" ||
-            key === "Shift" ||
-            key === "Alt" ||
-            key === "Meta"
-          ) {
-            console.log("[Lean Snippet] 忽略单独的修饰键");
-            return;
-          } else if (key.length === 1) {
-            key = key.toUpperCase();
-          }
-
-          keys.push(key);
-          const newKeybinding = keys.join("+");
-          input.value = newKeybinding;
-
-          editingKeybindings.set(command, newKeybinding);
-          console.log(
-            "[Lean Snippet] 快捷键已保存:",
-            command,
-            "=>",
-            newKeybinding
-          );
-          console.log(
-            "[Lean Snippet] editingKeybindings 内容:",
-            Array.from(editingKeybindings.entries())
-          );
-        });
-
-        const actionsCell = row.querySelector(".keybinding-actions");
-        actionsCell.innerHTML = "";
-
-        const saveBtn = document.createElement("button");
-        saveBtn.className = "keybinding-btn keybinding-save";
-        saveBtn.textContent = "保存";
-        saveBtn.onclick = () => {
-          console.log("[Lean Snippet] 点击保存按钮:", command);
-          saveKeybinding(command);
-        };
-
-        const cancelBtn = document.createElement("button");
-        cancelBtn.className = "keybinding-btn keybinding-reset";
-        cancelBtn.textContent = "取消";
-        cancelBtn.onclick = () => {
-          console.log("[Lean Snippet] 点击取消按钮:", command);
-          cancelEditKeybinding(command);
-        };
-
-        actionsCell.appendChild(saveBtn);
-        actionsCell.appendChild(cancelBtn);
-        console.log("[Lean Snippet] 编辑按钮已创建并绑定");
-      }
-
-      function saveKeybinding(command) {
-        console.log("[Lean Snippet] saveKeybinding 被调用:", command);
-        const newKeybinding = editingKeybindings.get(command);
-        console.log("[Lean Snippet] 新快捷键:", newKeybinding);
-
-        if (!newKeybinding) {
-          console.warn("[Lean Snippet] 没有找到新的快捷键配置");
-          vscode.postMessage({
-            type: "showWarning",
-            data: { message: "请先在输入框中按下新的快捷键组合！例如：按住 Shift+Ctrl 然后按字母键" }
-          });
-          return;
-        }
-
-        console.log("[Lean Snippet] 发送更新快捷键消息");
-        vscode.postMessage({
-          type: "updateKeybinding",
-          data: { command, keybinding: newKeybinding },
-        });
-        editingKeybindings.delete(command);
-      }
-
-      function cancelEditKeybinding(command) {
-        console.log("[Lean Snippet] cancelEditKeybinding 被调用:", command);
-        editingKeybindings.delete(command);
-        vscode.postMessage({ type: "getKeybindings" });
-      }
-
-      function resetKeybinding(command) {
-        console.log("[Lean Snippet] resetKeybinding 被调用:", command);
-        if (confirm("确定要重置此快捷键为默认值吗？")) {
-          console.log("[Lean Snippet] 用户确认重置");
-          vscode.postMessage({
-            type: "resetKeybinding",
-            data: { command },
-          });
-        } else {
-          console.log("[Lean Snippet] 用户取消重置");
-        }
-      }
-
-      // 接收消息
-      window.addEventListener("message", (event) => {
-        const message = event.data;
-        console.log("Received message:", message);
-        switch (message.type) {
-          case "keybindings":
-            console.log("Updating keybindings display with:", message.data);
-            updateKeybindingsDisplay(message.data);
-            break;
+        if (tab.dataset.tab === "keybindings") {
+          vscode.postMessage({ type: "getKeybindings" });
         }
       });
+    });
 
-      function updateKeybindingsDisplay(keybindings) {
-        console.log(
-          "[Lean Snippet] updateKeybindingsDisplay 被调用，数据:",
-          keybindings
-        );
-        const tbody = document.getElementById("keybindings-list");
-        if (!tbody) {
-          console.error("[Lean Snippet] keybindings-list 元素未找到！");
-          return;
-        }
+    // 快速操作函数
+    function _insertLog() {
+      vscode.postMessage({
+        type: "quickInsert",
+        data: { command: "extension.insertLogStatement" },
+      });
+    }
 
-        if (!keybindings || keybindings.length === 0) {
-          console.warn("[Lean Snippet] 没有快捷键数据");
-          tbody.innerHTML = '<tr><td colspan="3">暂无快捷键</td></tr>';
-          return;
-        }
+    function _deleteAllLogs() {
+      vscode.postMessage({
+        type: "quickInsert",
+        data: { command: "extension.deleteAllLogStatements" },
+      });
+    }
 
-        tbody.innerHTML = "";
-        keybindings.forEach((kb, index) => {
-          console.log(`[Lean Snippet] 创建第 ${index + 1} 个快捷键行:`, kb);
-          const row = document.createElement("tr");
-          row.setAttribute("data-command", kb.command);
+    function _insertChoose() {
+      vscode.postMessage({
+        type: "quickInsert",
+        data: { command: "extension.insertLogChoose" },
+      });
+    }
 
-          const titleCell = document.createElement("td");
-          titleCell.textContent = kb.title;
+    function _insertConsolePlus() {
+      vscode.postMessage({
+        type: "quickInsert",
+        data: { command: "extension.insertConsolePlus" },
+      });
+    }
 
-          const keyCell = document.createElement("td");
-          keyCell.className = "keybinding-display";
-          keyCell.textContent = kb.key || "未设置";
+    // 代码片段操作
+    function _addSnippet() {
+      const name = document.getElementById("snippet-name").value;
+      const prefix = document.getElementById("snippet-prefix").value;
+      const language = document.getElementById("snippet-language").value;
+      const description = document.getElementById("snippet-description").value;
+      const body = document.getElementById("snippet-body").value;
 
-          const actionsCell = document.createElement("td");
-          actionsCell.className = "keybinding-actions";
-
-          const editBtn = document.createElement("button");
-          editBtn.className = "keybinding-btn keybinding-save";
-          editBtn.textContent = "编辑";
-          editBtn.onclick = () => {
-            console.log("[Lean Snippet] 点击编辑按钮:", kb.command);
-            startEditKeybinding(kb.command);
-          };
-
-          const resetBtn = document.createElement("button");
-          resetBtn.className = "keybinding-btn keybinding-reset";
-          resetBtn.textContent = "重置";
-          resetBtn.onclick = () => {
-            console.log("[Lean Snippet] 点击重置按钮:", kb.command);
-            resetKeybinding(kb.command);
-          };
-
-          actionsCell.appendChild(editBtn);
-          actionsCell.appendChild(resetBtn);
-
-          row.appendChild(titleCell);
-          row.appendChild(keyCell);
-          row.appendChild(actionsCell);
-
-          tbody.appendChild(row);
-        });
-        console.log(
-          "[Lean Snippet] 快捷键列表渲染完成，共",
-          keybindings.length,
-          "个"
-        );
+      if (!(name && prefix && body)) {
+        alert("请填写名称、前缀和代码内容");
+        return;
       }
 
-      console.log("Requesting keybindings...");
+      vscode.postMessage({
+        type: "addSnippet",
+        data: { name, prefix, language, description, body },
+      });
+
+      document.getElementById("snippet-name").value = "";
+      document.getElementById("snippet-prefix").value = "";
+      document.getElementById("snippet-description").value = "";
+      document.getElementById("snippet-body").value = "";
+    }
+
+    function _importSnippets() {
+      vscode.postMessage({ type: "importSnippets" });
+    }
+
+    function _exportSnippets() {
+      const language = document.getElementById("export-language").value;
+      vscode.postMessage({
+        type: "exportSnippets",
+        data: { language },
+      });
+    }
+
+    // 快捷键编辑
+    const editingKeybindings = new Map();
+
+    function startEditKeybinding(command) {
+      console.log(`[Lean Snippet] 开始编辑快捷键: ${command}`);
+      const row = document.querySelector(`[data-command="${command}"]`);
+      if (!row) {
+        console.error(`[Lean Snippet] 找不到对应的行: ${command}`);
+        return;
+      }
+      const keybindingCell = row.querySelector(".keybinding-display");
+      const currentKey = keybindingCell.textContent.trim();
+      console.log(`[Lean Snippet] 当前快捷键: ${currentKey}`);
+
+      // 清空单元格
+      keybindingCell.innerHTML = "";
+
+      // 使用DOM API创建输入框
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "keybinding-input";
+      input.value = "";
+      input.placeholder = "请按下快捷键组合...";
+      input.setAttribute("data-command", command);
+      input.readOnly = true;
+
+      keybindingCell.appendChild(input);
+
+      // 延迟聚焦，确保输入框已经添加到DOM
+      setTimeout(() => {
+        input.focus();
+        console.log(
+          `[Lean Snippet] 输入框已创建并聚焦，当前值: ${input.value}`
+        );
+        console.log("[Lean Snippet] 请在输入框中按下新的快捷键组合！");
+      }, 10);
+
+      input.addEventListener("keydown", (e) => {
+        console.log(
+          `[Lean Snippet] 按键事件触发: ${e.key}, Ctrl: ${e.ctrlKey}, Shift: ${e.shiftKey}`
+        );
+        e.preventDefault();
+
+        const keys = [];
+        if (e.ctrlKey) {
+          keys.push("Ctrl");
+        }
+        if (e.shiftKey) {
+          keys.push("Shift");
+        }
+        if (e.altKey) {
+          keys.push("Alt");
+        }
+        if (e.metaKey) {
+          keys.push("Cmd");
+        }
+
+        let key = e.key;
+        if (key === " ") {
+          key = "Space";
+        } else if (
+          key === "Control" ||
+          key === "Shift" ||
+          key === "Alt" ||
+          key === "Meta"
+        ) {
+          console.log("[Lean Snippet] 忽略单独的修饰键");
+          return;
+        } else if (key.length === 1) {
+          key = key.toUpperCase();
+        }
+
+        keys.push(key);
+        const newKeybinding = keys.join("+");
+        input.value = newKeybinding;
+
+        editingKeybindings.set(command, newKeybinding);
+        console.log(
+          `[Lean Snippet] 快捷键已保存: ${command} => ${newKeybinding}`
+        );
+        console.log(
+          "[Lean Snippet] editingKeybindings 内容:",
+          Array.from(editingKeybindings.entries())
+        );
+      });
+
+      const actionsCell = row.querySelector(".keybinding-actions");
+      actionsCell.innerHTML = "";
+
+      const saveBtn = document.createElement("button");
+      saveBtn.className = "keybinding-btn keybinding-save";
+      saveBtn.textContent = "保存";
+      saveBtn.onclick = () => {
+        console.log(`[Lean Snippet] 点击保存按钮: ${command}`);
+        saveKeybinding(command);
+      };
+
+      const cancelBtn = document.createElement("button");
+      cancelBtn.className = "keybinding-btn keybinding-reset";
+      cancelBtn.textContent = "取消";
+      cancelBtn.onclick = () => {
+        console.log(`[Lean Snippet] 点击取消按钮: ${command}`);
+        cancelEditKeybinding(command);
+      };
+
+      actionsCell.appendChild(saveBtn);
+      actionsCell.appendChild(cancelBtn);
+      console.log("[Lean Snippet] 编辑按钮已创建并绑定");
+    }
+
+    function saveKeybinding(command) {
+      console.log(`[Lean Snippet] saveKeybinding 被调用: ${command}`);
+      const newKeybinding = editingKeybindings.get(command);
+      console.log(`[Lean Snippet] 新快捷键: ${newKeybinding}`);
+
+      if (!newKeybinding) {
+        console.warn("[Lean Snippet] 没有找到新的快捷键配置");
+        vscode.postMessage({
+          type: "showWarning",
+          data: {
+            message:
+              "请先在输入框中按下新的快捷键组合！例如：按住 Shift+Ctrl 然后按字母键",
+          },
+        });
+        return;
+      }
+
+      console.log("[Lean Snippet] 发送更新快捷键消息");
+      vscode.postMessage({
+        type: "updateKeybinding",
+        data: { command, keybinding: newKeybinding },
+      });
+      editingKeybindings.delete(command);
+    }
+
+    function cancelEditKeybinding(command) {
+      console.log(`[Lean Snippet] cancelEditKeybinding 被调用: ${command}`);
+      editingKeybindings.delete(command);
       vscode.postMessage({ type: "getKeybindings" });
+    }
+
+    function resetKeybinding(command) {
+      console.log(`[Lean Snippet] resetKeybinding 被调用: ${command}`);
+      if (confirm("确定要重置此快捷键为默认值吗？")) {
+        console.log("[Lean Snippet] 用户确认重置");
+        vscode.postMessage({
+          type: "resetKeybinding",
+          data: { command },
+        });
+      } else {
+        console.log("[Lean Snippet] 用户取消重置");
+      }
+    }
+
+    // 接收消息
+    window.addEventListener("message", (event) => {
+      const message = event.data;
+      console.log("Received message:", message);
+      switch (message.type) {
+        case "keybindings":
+          console.log("Updating keybindings display with:", message.data);
+          updateKeybindingsDisplay(message.data);
+          break;
+        default:
+          break;
+      }
+    });
+
+    function updateKeybindingsDisplay(keybindings) {
+      console.log(
+        `[Lean Snippet] updateKeybindingsDisplay 被调用，数据: ${keybindings}`
+      );
+      const tbody = document.getElementById("keybindings-list");
+      if (!tbody) {
+        console.error("[Lean Snippet] keybindings-list 元素未找到！");
+        return;
+      }
+
+      if (!keybindings || keybindings.length === 0) {
+        console.warn("[Lean Snippet] 没有快捷键数据");
+        tbody.innerHTML = '<tr><td colspan="3">暂无快捷键</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = "";
+      keybindings.forEach((kb, index) => {
+        console.log(`[Lean Snippet] 创建第 ${index + 1} 个快捷键行:`, kb);
+        const row = document.createElement("tr");
+        row.setAttribute("data-command", kb.command);
+
+        const titleCell = document.createElement("td");
+        titleCell.textContent = kb.title;
+
+        const keyCell = document.createElement("td");
+        keyCell.className = "keybinding-display";
+        keyCell.textContent = kb.key || "未设置";
+
+        const actionsCell = document.createElement("td");
+        actionsCell.className = "keybinding-actions";
+
+        const editBtn = document.createElement("button");
+        editBtn.className = "keybinding-btn keybinding-save";
+        editBtn.textContent = "编辑";
+        editBtn.onclick = () => {
+          console.log("[Lean Snippet] 点击编辑按钮:", kb.command);
+          startEditKeybinding(kb.command);
+        };
+
+        const resetBtn = document.createElement("button");
+        resetBtn.className = "keybinding-btn keybinding-reset";
+        resetBtn.textContent = "重置";
+        resetBtn.onclick = () => {
+          console.log("[Lean Snippet] 点击重置按钮:", kb.command);
+          resetKeybinding(kb.command);
+        };
+
+        actionsCell.appendChild(editBtn);
+        actionsCell.appendChild(resetBtn);
+
+        row.appendChild(titleCell);
+        row.appendChild(keyCell);
+        row.appendChild(actionsCell);
+
+        tbody.appendChild(row);
+      });
+      console.log(
+        "[Lean Snippet] 快捷键列表渲染完成，共",
+        keybindings.length,
+        "个"
+      );
+    }
+
+    console.log("Requesting keybindings...");
+    vscode.postMessage({ type: "getKeybindings" });
     </script>
   </body>
 </html>

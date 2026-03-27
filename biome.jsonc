@@ -1,0 +1,38 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.9/schema.json",
+  "extends": ["ultracite/biome/core"],
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "javascript": {
+    "globals": ["acquireVsCodeApi"]
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noForEach": "off",
+        "noStaticOnlyClass": "off"
+      },
+      "performance": {
+        "noNamespaceImport": "off"
+      },
+      "style": {
+        "noCommonJs": "off",
+        "noNestedTernary": "off",
+        "noParameterProperties": "off",
+        "useConsistentMemberAccessibility": "off",
+        "useFilenamingConvention": "off",
+        "useImportType": "off"
+      },
+      "correctness": {
+        "noGlobalDirnameFilename": "off"
+      },
+      "suspicious": {
+        "noAlert": "off",
+        "noExplicitAny": "off"
+      }
+    }
+  }
+}

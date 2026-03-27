@@ -1,13 +1,18 @@
-import * as vscode from 'vscode';
-import { getAllLogStatements, deleteFoundLogStatements } from '../utils/textUtils';
+import * as vscode from "vscode";
+import {
+  deleteFoundLogStatements,
+  getAllLogStatements,
+} from "../utils/textUtils";
 
 /**
  * 注册删除所有log语句命令
  * @param context - 扩展上下文
  */
-export function registerDeleteAllLogStatements(context: vscode.ExtensionContext): void {
+export function registerDeleteAllLogStatements(
+  context: vscode.ExtensionContext
+): void {
   const deleteAllLogStatements = vscode.commands.registerCommand(
-    'extension.deleteAllLogStatements',
+    "extension.deleteAllLogStatements",
     () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
@@ -23,6 +28,6 @@ export function registerDeleteAllLogStatements(context: vscode.ExtensionContext)
       deleteFoundLogStatements(workspaceEdit, document.uri, logStatements);
     }
   );
-  
+
   context.subscriptions.push(deleteAllLogStatements);
 }

@@ -1,13 +1,15 @@
-import * as vscode from 'vscode';
-import { insertText, getRandomEmoji } from '../utils/textUtils';
+import * as vscode from "vscode";
+import { getRandomEmoji, insertText } from "../utils/textUtils";
 
 /**
  * 注册插入log语句命令
  * @param context - 扩展上下文
  */
-export function registerInsertLogStatement(context: vscode.ExtensionContext): void {
+export function registerInsertLogStatement(
+  context: vscode.ExtensionContext
+): void {
   const insertLogStatement = vscode.commands.registerCommand(
-    'extension.insertLogStatement',
+    "extension.insertLogStatement",
     () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
@@ -20,17 +22,17 @@ export function registerInsertLogStatement(context: vscode.ExtensionContext): vo
 
       if (text) {
         vscode.commands
-          .executeCommand('editor.action.insertLineAfter')
+          .executeCommand("editor.action.insertLineAfter")
           .then(() => {
             const logToInsert = `console.log('${randomEmoji}-----${text}-----', ${text});`;
             insertText(logToInsert);
           });
       } else {
-        insertText('console.log();');
+        insertText("console.log();");
       }
     }
   );
-  
+
   context.subscriptions.push(insertLogStatement);
 }
 
@@ -38,9 +40,11 @@ export function registerInsertLogStatement(context: vscode.ExtensionContext): vo
  * 注册插入选择内容命令
  * @param context - 扩展上下文
  */
-export function registerInsertLogChoose(context: vscode.ExtensionContext): void {
+export function registerInsertLogChoose(
+  context: vscode.ExtensionContext
+): void {
   const insertLogChoose = vscode.commands.registerCommand(
-    'extension.insertLogChoose',
+    "extension.insertLogChoose",
     () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
@@ -50,10 +54,10 @@ export function registerInsertLogChoose(context: vscode.ExtensionContext): void 
       const selection = editor.selection;
       const text = editor.document.getText(selection);
       const randomEmoji = getRandomEmoji();
-      
+
       if (text) {
         vscode.commands
-          .executeCommand('editor.action.insertLineAfter')
+          .executeCommand("editor.action.insertLineAfter")
           .then(() => {
             const logToInsert = `console.log('${randomEmoji}${text}------------------------------>');`;
             insertText(logToInsert);
@@ -65,7 +69,7 @@ export function registerInsertLogChoose(context: vscode.ExtensionContext): void 
       }
     }
   );
-  
+
   context.subscriptions.push(insertLogChoose);
 }
 
@@ -73,9 +77,11 @@ export function registerInsertLogChoose(context: vscode.ExtensionContext): void 
  * 注册consolePlus命令
  * @param context - 扩展上下文
  */
-export function registerInsertConsolePlus(context: vscode.ExtensionContext): void {
+export function registerInsertConsolePlus(
+  context: vscode.ExtensionContext
+): void {
   const insertConsolePlus = vscode.commands.registerCommand(
-    'extension.insertConsolePlus',
+    "extension.insertConsolePlus",
     () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
@@ -84,20 +90,20 @@ export function registerInsertConsolePlus(context: vscode.ExtensionContext): voi
 
       const selection = editor.selection;
       const text = editor.document.getText(selection);
-      
+
       if (text) {
         vscode.commands
-          .executeCommand('editor.action.insertLineAfter')
+          .executeCommand("editor.action.insertLineAfter")
           .then(() => {
             const logToInsert = `consolePlus.log('${text}', ${text});`;
             insertText(logToInsert);
           });
       } else {
-        insertText('consolePlus.log();');
+        insertText("consolePlus.log();");
       }
     }
   );
-  
+
   context.subscriptions.push(insertConsolePlus);
 }
 
@@ -105,15 +111,17 @@ export function registerInsertConsolePlus(context: vscode.ExtensionContext): voi
  * 注册惊喜命令
  * @param context - 扩展上下文
  */
-export function registerSurpriseCommand(context: vscode.ExtensionContext): void {
-  const surprise = vscode.commands.registerCommand('extension.surprise', () => {
+export function registerSurpriseCommand(
+  context: vscode.ExtensionContext
+): void {
+  const surprise = vscode.commands.registerCommand("extension.surprise", () => {
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
       return;
     }
-    const content = `// 🌈thanks for AnNan!! 🎇🎇🎇🎇🎇🎇`;
+    const content = "// 🌈thanks for AnNan!! 🎇🎇🎇🎇🎇🎇";
     insertText(content);
   });
-  
+
   context.subscriptions.push(surprise);
 }

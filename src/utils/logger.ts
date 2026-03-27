@@ -17,26 +17,26 @@ export class Logger {
   private static prefix = "[Lean Snippet]";
 
   static log(...args: any[]) {
-    console.log(this.prefix, ...args);
+    console.log(Logger.prefix, ...args);
   }
 
   static info(...args: any[]) {
-    console.info(this.prefix, "📘", ...args);
+    console.info(Logger.prefix, "📘", ...args);
   }
 
   static warn(...args: any[]) {
-    console.warn(this.prefix, "⚠️", ...args);
+    console.warn(Logger.prefix, "⚠️", ...args);
   }
 
   static error(...args: any[]) {
-    console.error(this.prefix, "❌", ...args);
+    console.error(Logger.prefix, "❌", ...args);
   }
 
   static debug(...args: any[]) {
-    console.debug(this.prefix, "🔍", ...args);
+    console.debug(Logger.prefix, "🔍", ...args);
   }
 
   static success(...args: any[]) {
-    console.log(this.prefix, "✅", ...args);
+    console.log(Logger.prefix, "✅", ...args);
   }
 }
