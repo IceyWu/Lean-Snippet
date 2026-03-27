@@ -3,6 +3,7 @@
   "displayName": "Lean Snippet",
   "description": "🌈 Generate useful snippets!",
   "version": "1.0.1",
+  "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
     "vscode": "^1.110.0"
