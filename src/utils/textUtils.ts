@@ -9,7 +9,7 @@ export function insertText(text: string): void {
 
   if (!editor) {
     vscode.window.showErrorMessage(
-      "Can't insert log because no document is open"
+      "Can't insert log because no document is open",
     );
     return;
   }
@@ -52,18 +52,18 @@ export function getRandomEmoji(): string {
  */
 export function getAllLogStatements(
   document: vscode.TextDocument,
-  documentText: string
+  documentText: string,
 ): vscode.Range[] {
   const logStatements: vscode.Range[] = [];
 
   const logRegex =
-    /console\.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\([^)]*\);?/g;
+    /console\.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((?:[^)(]*|\([^)(]*\))*\);?/g;
 
   let match: RegExpExecArray | null = logRegex.exec(documentText);
   while (match) {
     const matchRange = new vscode.Range(
       document.positionAt(match.index),
-      document.positionAt(match.index + match[0].length)
+      document.positionAt(match.index + match[0].length),
     );
     if (!matchRange.isEmpty) {
       logStatements.push(matchRange);
@@ -83,33 +83,22 @@ export function getAllLogStatements(
 export function deleteFoundLogStatements(
   workspaceEdit: vscode.WorkspaceEdit,
   docUri: vscode.Uri,
-  logs: vscode.Range[]
+  logs: vscode.Range[],
 ): void {
-  logs.forEach((log) => {
-    const lineNum = log.start.line;
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-      return;
-    }
+  // 收集所有包含 log 的行号并去重
+  const lineNumbers = [...new Set(logs.map((log) => log.start.line))];
+  // 从下往上删除，避免行号偏移
+  lineNumbers.sort((a, b) => b - a);
 
-    // 获取所在行的内容
-    const lineContent = editor.document.lineAt(lineNum).text;
-    // 获取所在行的内容的长度
-    const lineContentLength = lineContent.length;
-    // 删除所在行的内容
-    workspaceEdit.delete(
-      docUri,
-      new vscode.Range(
-        new vscode.Position(lineNum, 0),
-        new vscode.Position(lineNum, lineContentLength)
-      )
-    );
-  });
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    return;
+  }
 
-  const randomEmoji = getRandomEmoji();
-  vscode.workspace.applyEdit(workspaceEdit).then(() => {
-    vscode.window.showInformationMessage(
-      ` Opps!${randomEmoji} There have ${logs.length} logs deleted`
-    );
-  });
+  for (const lineNum of lineNumbers) {
+    const line = editor.document.lineAt(lineNum);
+    // 删除整行（包括换行符）
+    const fullLineRange = line.rangeIncludingLineBreak;
+    workspaceEdit.delete(docUri, fullLineRange);
+  }
 }

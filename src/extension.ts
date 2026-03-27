@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import { registerDeleteAllLogStatements } from "./commands/deleteCommands";
 import {
-  registerInsertConsolePlus,
   registerInsertLogChoose,
   registerInsertLogStatement,
   registerSurpriseCommand,
@@ -22,7 +21,6 @@ export function activate(context: vscode.ExtensionContext): void {
   registerInsertLogStatement(context);
   registerDeleteAllLogStatements(context);
   registerInsertLogChoose(context);
-  registerInsertConsolePlus(context);
 
   // 创建状态栏项目
   createStatusBarItem(context);
@@ -30,11 +28,11 @@ export function activate(context: vscode.ExtensionContext): void {
   // 创建并注册主视图面板
   const mainViewProvider = new MainViewProvider(
     vscode.Uri.file(context.extensionPath),
-    context
+    context,
   );
   vscode.window.registerWebviewViewProvider(
     MainViewProvider.viewType,
-    mainViewProvider
+    mainViewProvider,
   );
 
   // 所有功能已集成到主视图面板中

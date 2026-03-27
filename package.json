@@ -73,10 +73,6 @@
         "title": "Delete all console.log statements"
       },
       {
-        "command": "extension.insertConsolePlus",
-        "title": "consolePlus"
-      },
-      {
         "command": "leanSnippet.refreshSnippets",
         "title": "Refresh",
         "icon": "$(sync)"
@@ -134,12 +130,6 @@
         "key": "shift+ctrl+/",
         "mac": "shift+cmd+/",
         "when": "editorTextFocus"
-      },
-      {
-        "command": "extension.insertConsolePlus",
-        "key": "shift+ctrl+j",
-        "mac": "shift+cmd+j",
-        "when": "editorTextFocus"
       }
     ],
     "configuration": {
@@ -159,11 +149,6 @@
           "type": "string",
           "default": "",
           "description": "选择插入内容的自定义快捷键"
-        },
-        "leanSnippet.keybindings.extension.insertConsolePlus": {
-          "type": "string",
-          "default": "",
-          "description": "插入增强日志的自定义快捷键"
         }
       }
     },
