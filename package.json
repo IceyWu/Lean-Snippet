@@ -5,7 +5,7 @@
   "version": "1.0.1",
   "publisher": "IceyWu",
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.110.0"
   },
   "categories": [
     "Snippets"
