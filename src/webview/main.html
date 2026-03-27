@@ -134,7 +134,7 @@
       /* 快捷操作按钮 */
       .quick-actions {
         display: flex;
-        gap: 8px;
+        gap: 6px;
         flex-wrap: wrap;
       }
 
@@ -142,19 +142,19 @@
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        padding: 5px 12px;
+        padding: 4px 10px;
         font-size: 12px;
-        color: var(--vscode-foreground);
+        color: var(--vscode-descriptionForeground);
         cursor: pointer;
-        background: var(--vscode-editor-background);
+        background: transparent;
         border: 1px solid var(--vscode-widget-border);
-        border-radius: 4px;
+        border-radius: 3px;
         transition: all 0.15s;
       }
 
       .quick-btn:hover {
+        color: var(--vscode-foreground);
         border-color: var(--vscode-focusBorder);
-        background: var(--vscode-list-hoverBackground);
       }
 
       /* 表单样式 */
@@ -220,51 +220,76 @@
         width: 100%;
       }
 
-      /* 快捷键表格 */
-      .keybinding-table {
-        width: 100%;
-        border-collapse: collapse;
+      /* 快捷键列表 */
+      .kb-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
       }
 
-      .keybinding-table th,
-      .keybinding-table td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid var(--vscode-widget-border);
-      }
-
-      .keybinding-table th {
-        font-weight: 600;
-        color: var(--vscode-foreground);
+      .kb-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 10px;
+        border-radius: 4px;
+        border: 1px solid var(--vscode-widget-border);
         background: var(--vscode-editor-background);
       }
 
-      .keybinding-table tr:hover {
-        background: var(--vscode-list-hoverBackground);
+      .kb-item:hover {
+        border-color: var(--vscode-focusBorder);
+      }
+
+      .kb-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .kb-name {
+        font-size: 12px;
+        color: var(--vscode-foreground);
+      }
+
+      .kb-key {
+        display: inline-block;
+        padding: 2px 8px;
+        font-size: 11px;
+        font-family: "Consolas", "Monaco", monospace;
+        color: var(--vscode-badge-foreground);
+        background: var(--vscode-badge-background);
+        border-radius: 3px;
+        width: fit-content;
+      }
+
+      .kb-actions {
+        display: flex;
+        gap: 4px;
+        flex-shrink: 0;
+        margin-left: 8px;
       }
 
       .keybinding-input {
-        width: 120px;
-        padding: 4px 8px;
-        font-size: 12px;
+        width: 110px;
+        padding: 3px 6px;
+        font-size: 11px;
+        font-family: "Consolas", "Monaco", monospace;
         color: var(--vscode-input-foreground);
         background: var(--vscode-input-background);
         border: 1px solid var(--vscode-input-border);
         border-radius: 3px;
       }
 
-      .keybinding-actions {
-        display: flex;
-        gap: 8px;
-      }
-
       .keybinding-btn {
-        padding: 4px 10px;
-        font-size: 12px;
+        padding: 3px 8px;
+        font-size: 11px;
         cursor: pointer;
         border: none;
         border-radius: 3px;
-        transition: all 0.2s;
+        transition: all 0.15s;
       }
 
       .keybinding-save {
@@ -272,10 +297,19 @@
         background: var(--vscode-button-background);
       }
 
+      .keybinding-save:hover {
+        background: var(--vscode-button-hoverBackground);
+      }
+
       .keybinding-reset {
-        color: var(--vscode-textLink-foreground);
+        color: var(--vscode-descriptionForeground);
         background: transparent;
-        border: 1px solid var(--vscode-textLink-foreground);
+        border: 1px solid var(--vscode-widget-border);
+      }
+
+      .keybinding-reset:hover {
+        color: var(--vscode-foreground);
+        border-color: var(--vscode-focusBorder);
       }
 
       .keybinding-btn:hover {
@@ -632,31 +666,37 @@
       <div class="card">
         <h3 class="card-title">快速操作</h3>
         <div class="quick-actions">
-          <button type="button" class="quick-btn" onclick="insertLog()">
+          <button
+            type="button"
+            class="quick-btn"
+            onclick="insertLog()"
+            title="将选中的变量/文本进行 console.log 具名打印"
+          >
             插入日志
           </button>
-          <button type="button" class="quick-btn" onclick="deleteAllLogs()">
+          <button
+            type="button"
+            class="quick-btn"
+            onclick="deleteAllLogs()"
+            title="删除当前文件中所有的 console.log 等日志语句"
+          >
             清理日志
           </button>
-          <button type="button" class="quick-btn" onclick="insertChoose()">
+          <button
+            type="button"
+            class="quick-btn"
+            onclick="insertChoose()"
+            title="选择要插入的日志类型（log/warn/error 等）"
+          >
             选择插入
           </button>
         </div>
       </div>
       <div class="card">
         <h3 class="card-title">快捷键配置</h3>
-        <table class="keybinding-table">
-          <thead>
-            <tr>
-              <th>功能</th>
-              <th>当前快捷键</th>
-              <th>操作</th>
-            </tr>
-          </thead>
-          <tbody id="keybindings-list">
-            <!-- 动态生成 -->
-          </tbody>
-        </table>
+        <div class="kb-list" id="keybindings-list">
+          <!-- 动态生成 -->
+        </div>
       </div>
     </div>
 
@@ -927,110 +967,59 @@
       const editingKeybindings = new Map();
 
       function startEditKeybinding(command) {
-        console.log(`[Lean Snippet] 开始编辑快捷键: ${command}`);
-        const row = document.querySelector(`[data-command="${command}"]`);
-        if (!row) {
-          console.error(`[Lean Snippet] 找不到对应的行: ${command}`);
-          return;
-        }
-        const keybindingCell = row.querySelector(".keybinding-display");
-        const currentKey = keybindingCell.textContent.trim();
-        console.log(`[Lean Snippet] 当前快捷键: ${currentKey}`);
+        const item = document.querySelector(
+          `.kb-item[data-command="${command}"]`,
+        );
+        if (!item) return;
 
-        // 清空单元格
-        keybindingCell.innerHTML = "";
+        const keyEl = item.querySelector(".kb-key");
 
-        // 使用DOM API创建输入框
+        // 替换为输入框
         const input = document.createElement("input");
         input.type = "text";
         input.className = "keybinding-input";
         input.value = "";
-        input.placeholder = "请按下快捷键组合...";
-        input.setAttribute("data-command", command);
+        input.placeholder = "按下快捷键...";
         input.readOnly = true;
+        keyEl.replaceWith(input);
 
-        keybindingCell.appendChild(input);
-
-        // 延迟聚焦，确保输入框已经添加到DOM
-        setTimeout(() => {
-          input.focus();
-          console.log(
-            `[Lean Snippet] 输入框已创建并聚焦，当前值: ${input.value}`,
-          );
-          console.log("[Lean Snippet] 请在输入框中按下新的快捷键组合！");
-        }, 10);
+        setTimeout(() => input.focus(), 10);
 
         input.addEventListener("keydown", (e) => {
-          console.log(
-            `[Lean Snippet] 按键事件触发: ${e.key}, Ctrl: ${e.ctrlKey}, Shift: ${e.shiftKey}`,
-          );
           e.preventDefault();
-
           const keys = [];
-          if (e.ctrlKey) {
-            keys.push("Ctrl");
-          }
-          if (e.shiftKey) {
-            keys.push("Shift");
-          }
-          if (e.altKey) {
-            keys.push("Alt");
-          }
-          if (e.metaKey) {
-            keys.push("Cmd");
-          }
+          if (e.ctrlKey) keys.push("Ctrl");
+          if (e.shiftKey) keys.push("Shift");
+          if (e.altKey) keys.push("Alt");
+          if (e.metaKey) keys.push("Cmd");
 
           let key = e.key;
-          if (key === " ") {
-            key = "Space";
-          } else if (
-            key === "Control" ||
-            key === "Shift" ||
-            key === "Alt" ||
-            key === "Meta"
-          ) {
-            console.log("[Lean Snippet] 忽略单独的修饰键");
-            return;
-          } else if (key.length === 1) {
-            key = key.toUpperCase();
-          }
+          if (key === " ") key = "Space";
+          else if (["Control", "Shift", "Alt", "Meta"].includes(key)) return;
+          else if (key.length === 1) key = key.toUpperCase();
 
           keys.push(key);
           const newKeybinding = keys.join("+");
           input.value = newKeybinding;
-
           editingKeybindings.set(command, newKeybinding);
-          console.log(
-            `[Lean Snippet] 快捷键已保存: ${command} => ${newKeybinding}`,
-          );
-          console.log(
-            "[Lean Snippet] editingKeybindings 内容:",
-            Array.from(editingKeybindings.entries()),
-          );
         });
 
-        const actionsCell = row.querySelector(".keybinding-actions");
-        actionsCell.innerHTML = "";
+        // 替换操作按钮
+        const actions = item.querySelector(".kb-actions");
+        actions.innerHTML = "";
 
         const saveBtn = document.createElement("button");
         saveBtn.className = "keybinding-btn keybinding-save";
         saveBtn.textContent = "保存";
-        saveBtn.onclick = () => {
-          console.log(`[Lean Snippet] 点击保存按钮: ${command}`);
-          saveKeybinding(command);
-        };
+        saveBtn.onclick = () => saveKeybinding(command);
 
         const cancelBtn = document.createElement("button");
         cancelBtn.className = "keybinding-btn keybinding-reset";
         cancelBtn.textContent = "取消";
-        cancelBtn.onclick = () => {
-          console.log(`[Lean Snippet] 点击取消按钮: ${command}`);
-          cancelEditKeybinding(command);
-        };
+        cancelBtn.onclick = () => cancelEditKeybinding(command);
 
-        actionsCell.appendChild(saveBtn);
-        actionsCell.appendChild(cancelBtn);
-        console.log("[Lean Snippet] 编辑按钮已创建并绑定");
+        actions.appendChild(saveBtn);
+        actions.appendChild(cancelBtn);
       }
 
       function saveKeybinding(command) {
@@ -1096,67 +1085,55 @@
       });
 
       function updateKeybindingsDisplay(keybindings) {
-        console.log(
-          `[Lean Snippet] updateKeybindingsDisplay 被调用，数据: ${keybindings}`,
-        );
-        const tbody = document.getElementById("keybindings-list");
-        if (!tbody) {
-          console.error("[Lean Snippet] keybindings-list 元素未找到！");
-          return;
-        }
+        const listEl = document.getElementById("keybindings-list");
+        if (!listEl) return;
 
         if (!keybindings || keybindings.length === 0) {
-          console.warn("[Lean Snippet] 没有快捷键数据");
-          tbody.innerHTML = '<tr><td colspan="3">暂无快捷键</td></tr>';
+          listEl.innerHTML =
+            '<div style="padding:12px;text-align:center;color:var(--vscode-descriptionForeground)">暂无快捷键</div>';
           return;
         }
 
-        tbody.innerHTML = "";
-        keybindings.forEach((kb, index) => {
-          console.log(`[Lean Snippet] 创建第 ${index + 1} 个快捷键行:`, kb);
-          const row = document.createElement("tr");
-          row.setAttribute("data-command", kb.command);
+        listEl.innerHTML = "";
+        keybindings.forEach((kb) => {
+          const item = document.createElement("div");
+          item.className = "kb-item";
+          item.setAttribute("data-command", kb.command);
 
-          const titleCell = document.createElement("td");
-          titleCell.textContent = kb.title;
+          const info = document.createElement("div");
+          info.className = "kb-info";
 
-          const keyCell = document.createElement("td");
-          keyCell.className = "keybinding-display";
-          keyCell.textContent = kb.key || "未设置";
+          const name = document.createElement("div");
+          name.className = "kb-name";
+          name.textContent = kb.title;
 
-          const actionsCell = document.createElement("td");
-          actionsCell.className = "keybinding-actions";
+          const key = document.createElement("span");
+          key.className = "kb-key";
+          key.textContent = kb.key || "未设置";
+
+          info.appendChild(name);
+          info.appendChild(key);
+
+          const actions = document.createElement("div");
+          actions.className = "kb-actions";
 
           const editBtn = document.createElement("button");
           editBtn.className = "keybinding-btn keybinding-save";
           editBtn.textContent = "编辑";
-          editBtn.onclick = () => {
-            console.log("[Lean Snippet] 点击编辑按钮:", kb.command);
-            startEditKeybinding(kb.command);
-          };
+          editBtn.onclick = () => startEditKeybinding(kb.command);
 
           const resetBtn = document.createElement("button");
           resetBtn.className = "keybinding-btn keybinding-reset";
           resetBtn.textContent = "重置";
-          resetBtn.onclick = () => {
-            console.log("[Lean Snippet] 点击重置按钮:", kb.command);
-            resetKeybinding(kb.command);
-          };
+          resetBtn.onclick = () => resetKeybinding(kb.command);
 
-          actionsCell.appendChild(editBtn);
-          actionsCell.appendChild(resetBtn);
+          actions.appendChild(editBtn);
+          actions.appendChild(resetBtn);
 
-          row.appendChild(titleCell);
-          row.appendChild(keyCell);
-          row.appendChild(actionsCell);
-
-          tbody.appendChild(row);
+          item.appendChild(info);
+          item.appendChild(actions);
+          listEl.appendChild(item);
         });
-        console.log(
-          "[Lean Snippet] 快捷键列表渲染完成，共",
-          keybindings.length,
-          "个",
-        );
       }
 
       console.log("Requesting initial data...");

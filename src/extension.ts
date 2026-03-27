@@ -7,7 +7,6 @@ import {
 } from "./commands/logCommands";
 import { MainViewProvider } from "./providers/mainViewProvider";
 import { Logger } from "./utils/logger";
-import { createStatusBarItem } from "./utils/statusBar";
 
 /**
  * 激活扩展
@@ -21,9 +20,6 @@ export function activate(context: vscode.ExtensionContext): void {
   registerInsertLogStatement(context);
   registerDeleteAllLogStatements(context);
   registerInsertLogChoose(context);
-
-  // 创建状态栏项目
-  createStatusBarItem(context);
 
   // 创建并注册主视图面板
   const mainViewProvider = new MainViewProvider(

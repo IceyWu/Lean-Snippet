@@ -3,7 +3,6 @@
   "displayName": "Lean Snippet",
   "description": "🌈 Generate useful snippets!",
   "version": "1.0.0",
-  "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
     "vscode": "^1.85.0"
@@ -26,7 +25,7 @@
         {
           "id": "leanSnippetExplorer",
           "title": "Lean Snippet",
-          "icon": "./assets/icons/lean-snippet-simple.svg"
+          "icon": "./assets/icons/lean-snippet-activity.svg"
         }
       ]
     },
