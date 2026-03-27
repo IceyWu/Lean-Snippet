@@ -6,7 +6,7 @@
   "icon": "assets/images/logo.png",
   "publisher": "IceyWu",
   "engines": {
-    "vscode": "^1.110.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Snippets"
@@ -199,7 +199,9 @@
       ]
     }
   },
-  "activationEvents": [],
+  "activationEvents": [
+    "onView:leanSnippetMainView"
+  ],
   "main": "./out/extension.js",
   "scripts": {
     "compile": "tsc -p ./",
@@ -217,7 +219,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.9",
     "@types/node": "^25.5.0",
-    "@types/vscode": "^1.110.0",
+    "@types/vscode": "^1.85.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",

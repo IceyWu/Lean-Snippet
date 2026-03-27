@@ -4,6 +4,7 @@
 
 # Source code (only include compiled output)
 src/**
+!src/webview/**
 **/*.ts
 **/tsconfig.json
 **/*.map
